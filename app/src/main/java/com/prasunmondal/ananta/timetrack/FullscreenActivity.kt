@@ -1,9 +1,10 @@
 package com.prasunmondal.ananta.timetrack
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 
 /**
@@ -46,6 +47,12 @@ class FullscreenActivity : AppCompatActivity() {
         false
     }
 
+    fun goToCountDown() {
+        val i = Intent(this@FullscreenActivity, TimeTracker::class.java)
+        startActivity(i)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -54,6 +61,12 @@ class FullscreenActivity : AppCompatActivity() {
 
         mVisible = true
 
+        Handler().postDelayed({ // This method will be executed once the timer is over
+            val i = Intent(this@FullscreenActivity, TimeTracker::class.java)
+            startActivity(i)
+            finish()
+        }, 1500)
+
         // Set up the user interaction to manually show or hide the system UI.
 //        fullscreen_content.setOnClickListener { toggle() }
 
@@ -61,6 +74,9 @@ class FullscreenActivity : AppCompatActivity() {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
 //        dummy_button.setOnTouchListener(mDelayHideTouchListener)
+
+//        sleep
+//        goToCountDown()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
