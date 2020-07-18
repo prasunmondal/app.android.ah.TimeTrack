@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Utility.ToSheet
 import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
 import java.text.SimpleDateFormat
@@ -103,6 +104,7 @@ class TimeTracker : AppCompatActivity() {
             stop = sdf.format(Date())
             onClickStop(view)
             println("$start $stop")
+            ToSheet().post(start, stop, findViewById<TextView>(R.id.textView).text.toString(), applicationContext)
         }
     }
 
