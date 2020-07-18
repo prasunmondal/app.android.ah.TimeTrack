@@ -205,7 +205,7 @@ class TimeTracker : AppCompatActivity() {
                 if (running) {
                     seconds = ((System.currentTimeMillis() - startMillis) / 1000).toInt()
                 }
-                handler.postDelayed(this, 1000)
+                handler.postDelayed(this, 100)
                 // Post the code again
                 // with a delay of 1 second.
             }
