@@ -8,7 +8,7 @@ import java.util.*
 
 class ToSheet {
 
-    fun post(startTime: String, endTime: String, calculatedTime: String, context: Context) {
+    fun post(startTime: String, endTime: String, calculatedTime: String, startMillis: String, stopMillis: String, context: Context) {
 
         var isDev = false
 
@@ -26,7 +26,7 @@ class ToSheet {
                 "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec",
                 "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
                 "Ananta",
-            listOf(sdf.format(Date()), appVersion, startTime, endTime, calculatedTime))
+            listOf(sdf.format(Date()), appVersion, startTime, endTime, startMillis, stopMillis, (stopMillis.toLong() - startMillis.toLong()).toString(), calculatedTime))
         } catch (e: Exception) {
 
         }

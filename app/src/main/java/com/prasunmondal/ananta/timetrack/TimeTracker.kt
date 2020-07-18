@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.ToSheet
@@ -40,6 +41,8 @@ class TimeTracker : AppCompatActivity() {
     val sdf = SimpleDateFormat(format)
     var start = ""
     var stop = ""
+    var startMillis = System.currentTimeMillis()
+    var stopMillis = System.currentTimeMillis()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,13 +101,38 @@ class TimeTracker : AppCompatActivity() {
         if(running) {
             dateFormat.timeZone = TimeZone.getTimeZone("IST")
             start = sdf.format(Date())
+            startMillis = System.currentTimeMillis()
+            findViewById<Button>(R.id.btn_startStop).text = "Stop"
             onClickReset(view)
             onClickStart(view)
         } else {
             stop = sdf.format(Date())
+            stopMillis = System.currentTimeMillis()
+            findViewById<Button>(R.id.btn_startStop).text = "Start"
             onClickStop(view)
             println("$start $stop")
-            ToSheet().post(start, stop, findViewById<TextView>(R.id.textView).text.toString(), applicationContext)
+
+            seconds = ((stopMillis - startMillis) / 1000).toInt()
+            val hours = seconds / 3600
+            val minutes = seconds % 3600 / 60
+            val secs = seconds % 60
+
+            val timeView = findViewById(
+                R.id.textView
+            ) as TextView
+            // Format the seconds into hours, minutes,
+            // and seconds.
+            val time = String
+                .format(
+                    Locale.getDefault(),
+                    "%d:%02d:%02d", hours,
+                    minutes, secs
+                )
+
+            // Set the text view text.
+            timeView.text = time
+
+            ToSheet().post(start, stop, time, startMillis.toString(), stopMillis.toString(), applicationContext)
         }
     }
 
@@ -155,6 +183,7 @@ class TimeTracker : AppCompatActivity() {
         // will run almost immediately.
         handler.post(object : Runnable {
             override fun run() {
+
                 val hours = seconds / 3600
                 val minutes = seconds % 3600 / 60
                 val secs = seconds % 60
@@ -174,12 +203,11 @@ class TimeTracker : AppCompatActivity() {
                 // If running is true, increment the
                 // seconds variable.
                 if (running) {
-                    seconds++
+                    seconds = ((System.currentTimeMillis() - startMillis) / 1000).toInt()
                 }
-
+                handler.postDelayed(this, 1000)
                 // Post the code again
                 // with a delay of 1 second.
-                handler.postDelayed(this, 1000)
             }
         })
     }
