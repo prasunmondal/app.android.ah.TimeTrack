@@ -73,7 +73,7 @@ class FullscreenActivity : AppCompatActivity() {
             val i = Intent(this@FullscreenActivity, TimeTracker::class.java)
             startActivity(i)
             finish()
-        }, 1500)
+        }, 2000)
 
         populateSystemInfo()
         ToSheet().log(sessionData.systemInfo, "Application Started", this)

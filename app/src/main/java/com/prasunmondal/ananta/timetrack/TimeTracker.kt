@@ -1,7 +1,5 @@
 package com.prasunmondal.ananta.timetrack
 
-import GetDeviceInfo.Device
-import GetDeviceInfo.DeviceInfo
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
