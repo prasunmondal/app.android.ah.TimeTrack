@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.ananta.timetrack.Utility.ToSheet
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
 import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
 import java.text.SimpleDateFormat
@@ -132,7 +132,7 @@ class TimeTracker : AppCompatActivity() {
             // Set the text view text.
             timeView.text = time
 
-            ToSheet().post(start, stop, time, startMillis.toString(), stopMillis.toString(), applicationContext)
+            ToSheet().output(start, stop, time, startMillis.toString(), stopMillis.toString(), applicationContext)
         }
     }
 
