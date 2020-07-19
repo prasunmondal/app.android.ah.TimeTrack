@@ -8,7 +8,7 @@ import java.util.*
 
 class ToSheet {
 
-    fun output(startTime: String, endTime: String, calculatedTime: String, startMillis: String, stopMillis: String, context: Context) {
+    fun output(startTime: String, endTime: String, calculatedTime: String, context: Context) {
 
         var isDev = false
 
@@ -26,7 +26,7 @@ class ToSheet {
                 Constants.Singleton.instance.googleScript_scriptURL,
                 Constants.Singleton.instance.sheet_output_URL,
                 Constants.Singleton.instance.sheet_output_name,
-            listOf(sdf.format(Date()), appVersion, startTime, endTime, startMillis, stopMillis, (stopMillis.toLong() - startMillis.toLong()).toString(), calculatedTime))
+            listOf(sdf.format(Date()), startTime, endTime, calculatedTime))
         } catch (e: Exception) {
 
         }

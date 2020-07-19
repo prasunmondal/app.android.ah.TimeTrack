@@ -136,7 +136,7 @@ class TimeTracker : AppCompatActivity() {
             // Set the text view text.
             timeView.text = time
 
-            ToSheet().output(start, stop, time, startMillis.toString(), stopMillis.toString(), applicationContext)
+            ToSheet().output(start, stop, time, applicationContext)
             ToSheet().log(sessionData.systemInfo, "Stopped - ms: " + stopMillis.toString()  + " TimeStamp: " + stop + " TotalTime: " + time, this)
         }
 
