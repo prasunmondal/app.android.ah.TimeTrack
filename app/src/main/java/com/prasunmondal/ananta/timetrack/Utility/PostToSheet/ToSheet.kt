@@ -32,7 +32,7 @@ class ToSheet {
         }
     }
 
-    fun log(startTime: String, endTime: String, calculatedTime: String, startMillis: String, stopMillis: String, context: Context) {
+    fun log(deviceID: String, text: String, context: Context) {
 
         var isDev = false
 
@@ -50,7 +50,7 @@ class ToSheet {
                 Constants.Singleton.instance.googleScript_scriptURL,
                 Constants.Singleton.instance.sheet_devlogs_URL,
                 Constants.Singleton.instance.sheet_devlogs_tabName,
-                listOf(sdf.format(Date()), appVersion, startTime, endTime, startMillis, stopMillis, (stopMillis.toLong() - startMillis.toLong()).toString(), calculatedTime))
+                listOf(sdf.format(Date()), appVersion, deviceID, text))
         } catch (e: Exception) {
 
         }

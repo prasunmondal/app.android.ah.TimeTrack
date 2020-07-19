@@ -1,5 +1,7 @@
 package com.prasunmondal.ananta.timetrack
 
+import GetDeviceInfo.Device
+import GetDeviceInfo.DeviceInfo
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
+import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
 import java.text.SimpleDateFormat

@@ -1,10 +1,14 @@
 package com.prasunmondal.ananta.timetrack
 
+import GetDeviceInfo.Device
+import GetDeviceInfo.DeviceInfo
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
+import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 
 /**
@@ -67,6 +71,8 @@ class FullscreenActivity : AppCompatActivity() {
             finish()
         }, 1500)
 
+        populateSystemInfo()
+        ToSheet().log(sessionData.systemInfo, "Application Started", this)
         // Set up the user interaction to manually show or hide the system UI.
 //        fullscreen_content.setOnClickListener { toggle() }
 
@@ -146,5 +152,86 @@ class FullscreenActivity : AppCompatActivity() {
          * and a change of the status and navigation bar.
          */
         private val UI_ANIMATION_DELAY = 300
+    }
+
+    fun populateSystemInfo() {
+        sessionData.uniqueDeviceID = ""
+//        sessionData.systemInfo = "System-infos: "
+//        sessionData.systemInfo += "     OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")"
+//        sessionData.systemInfo += "     OS API Level: " + Build.VERSION.SDK_INT
+//        sessionData.systemInfo += "     Device: " + Build.DEVICE
+//        sessionData.systemInfo += "     Model (and Product): " + Build.MODEL + " ("+ Build.PRODUCT + ")"
+//        sessionData.systemInfo += "      windowHeight: " + window.windowManager.defaultDisplay.height
+//        sessionData.systemInfo += "      windowWidth(): " + window.windowManager.defaultDisplay.width
+//        sessionData.systemInfo += "      generateDeviceId(): " + generateDeviceId()
+
+
+        sessionData.systemInfo = DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_UNIQUE_ID)
+
+//        sessionData.systemInfo += "\n" + System.getProperty("os.name")
+//        sessionData.systemInfo += "\n" + System.getProperty("os.version")
+//        sessionData.systemInfo += "\n" + Build.VERSION.RELEASE
+//        sessionData.systemInfo += "\n" + Build.DEVICE
+//        sessionData.systemInfo += "\n" + Build.MODEL
+//        sessionData.systemInfo += "\n" + Build.PRODUCT
+//        sessionData.systemInfo += "\n" + Build.BRAND
+//        sessionData.systemInfo += "\n" + Build.DISPLAY
+//        sessionData.systemInfo += "\n" + Build.CPU_ABI
+//        sessionData.systemInfo += "\n" + Build.CPU_ABI2
+//        sessionData.systemInfo += "\n" + Build.UNKNOWN
+//        sessionData.systemInfo += "\n" + Build.HARDWARE
+//        sessionData.systemInfo += "\n" + Build.ID
+//        sessionData.systemInfo += "\n" + Build.MANUFACTURER
+//        sessionData.systemInfo += "\n" + Build.SERIAL
+//        sessionData.systemInfo += "\n" + Build.USER
+//        sessionData.systemInfo += "\n" + Build.HOST
+
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_CURRENT_DATE_TIME)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_CURRENT_DATE_TIME_ZERO_GMT)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_CURRENT_YEAR)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_FREE_MEMORY)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_HARDWARE_MODEL)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IN_INCH)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IP_ADDRESS_IPV4)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IP_ADDRESS_IPV6)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_LANGUAGE)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_MAC_ADDRESS)
+//        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NAME)
+
+        sessionData.systemInfo = DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_MAC_ADDRESS)
+        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IN_INCH)
+        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_HARDWARE_MODEL)
+        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NUMBER_OF_PROCESSORS)
+        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_SYSTEM_NAME)
+        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_VERSION)
+
+//        sessionData.systemInfo += "\nDEVICE_TYPE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TYPE)
+//
+//        sessionData.systemInfo += "\nDEVICE_SYSTEM_VERSION: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_SYSTEM_VERSION)
+//        sessionData.systemInfo += "\nDEVICE_TOKEN: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOKEN)
+//        sessionData.systemInfo += "\nDEVICE_NAME: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NAME)
+//        sessionData.systemInfo += "\nDEVICE_UUID: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_UUID)
+//        sessionData.systemInfo += "\nDEVICE_MANUFACTURE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_MANUFACTURE)
+//        sessionData.systemInfo += "\nCONTACT_ID: " + DeviceInfo.getDeviceInfo(applicationContext, Device.CONTACT_ID)
+//        sessionData.systemInfo += "\nDEVICE_LANGUAGE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_LANGUAGE)
+//        sessionData.systemInfo += "\nDEVICE_TIME_ZONE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TIME_ZONE)
+//        sessionData.systemInfo += "\nDEVICE_LOCAL_COUNTRY_CODE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_LOCAL_COUNTRY_CODE)
+//        sessionData.systemInfo += "\nDEVICE_CURRENT_YEAR: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_CURRENT_YEAR)
+//        sessionData.systemInfo += "\nDEVICE_CURRENT_DATE_TIME: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_CURRENT_DATE_TIME)
+//        sessionData.systemInfo += "\nDEVICE_CURRENT_DATE_TIME_ZERO_GMT: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_CURRENT_DATE_TIME_ZERO_GMT)
+//
+//        sessionData.systemInfo += "\nDEVICE_LOCALE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_LOCALE)
+//        sessionData.systemInfo += "\nDEVICE_NETWORK: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NETWORK)
+//        sessionData.systemInfo += "\nDEVICE_NETWORK_TYPE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NETWORK_TYPE)
+//        sessionData.systemInfo += "\nDEVICE_IP_ADDRESS_IPV4: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IP_ADDRESS_IPV4)
+//        sessionData.systemInfo += "\nDEVICE_IP_ADDRESS_IPV6: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IP_ADDRESS_IPV6)
+//
+//        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_USAGE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_USAGE)
+//        sessionData.systemInfo += "\nDEVICE_TOTAL_MEMORY: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_MEMORY)
+//        sessionData.systemInfo += "\nDevice: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_FREE_MEMORY)
+//        sessionData.systemInfo += "\nDEVICE_USED_MEMORY: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_USED_MEMORY)
+//        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_USAGE_USER: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_USAGE_USER)
+//        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_USAGE_SYSTEM: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_USAGE_SYSTEM)
+//        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_IDLE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_IDLE)
     }
 }
