@@ -2,14 +2,18 @@ package com.prasunmondal.ananta.timetrack
 
 import GetDeviceInfo.Device
 import GetDeviceInfo.DeviceInfo
+import android.content.Context
 import android.content.Intent
+import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
 import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_fullscreen.*
+import java.util.*
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -155,7 +159,7 @@ class FullscreenActivity : AppCompatActivity() {
     }
 
     fun populateSystemInfo() {
-        sessionData.uniqueDeviceID = ""
+        sessionData.systemInfo = generateDeviceId() + " - "
 //        sessionData.systemInfo = "System-infos: "
 //        sessionData.systemInfo += "     OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")"
 //        sessionData.systemInfo += "     OS API Level: " + Build.VERSION.SDK_INT
@@ -166,7 +170,7 @@ class FullscreenActivity : AppCompatActivity() {
 //        sessionData.systemInfo += "      generateDeviceId(): " + generateDeviceId()
 
 
-        sessionData.systemInfo = DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_UNIQUE_ID)
+        sessionData.systemInfo += DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_UNIQUE_ID) + " - "
 
 //        sessionData.systemInfo += "\n" + System.getProperty("os.name")
 //        sessionData.systemInfo += "\n" + System.getProperty("os.version")
@@ -198,7 +202,7 @@ class FullscreenActivity : AppCompatActivity() {
 //        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_MAC_ADDRESS)
 //        sessionData.systemInfo += "\n" + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NAME)
 
-        sessionData.systemInfo = DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_MAC_ADDRESS)
+        sessionData.systemInfo += DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_MAC_ADDRESS)
         sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_IN_INCH)
         sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_HARDWARE_MODEL)
         sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_NUMBER_OF_PROCESSORS)
@@ -233,5 +237,19 @@ class FullscreenActivity : AppCompatActivity() {
 //        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_USAGE_USER: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_USAGE_USER)
 //        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_USAGE_SYSTEM: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_USAGE_SYSTEM)
 //        sessionData.systemInfo += "\nDEVICE_TOTAL_CPU_IDLE: " + DeviceInfo.getDeviceInfo(applicationContext, Device.DEVICE_TOTAL_CPU_IDLE)
+    }
+
+    fun generateDeviceId(): String {
+        val macAddr: String
+        val wifiMan =
+            this.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiInf = wifiMan.connectionInfo
+        macAddr = wifiInf.macAddress
+        val androidId: String = "" + Settings.Secure.getString(
+            contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
+        val deviceUuid = UUID(androidId.hashCode().toLong(), macAddr.hashCode().toLong())
+        return deviceUuid.toString()
     }
 }
