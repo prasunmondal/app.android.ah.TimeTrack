@@ -136,20 +136,23 @@ public class DeviceInfo {
                     return "Android OS";
 
                 case DEVICE_UNIQUE_ID:
-                    String uniqueID = null;
-                    final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
-                    if (uniqueID == null) {
-                        SharedPreferences sharedPrefs = activity.getSharedPreferences(
-                                PREF_UNIQUE_ID, Context.MODE_PRIVATE);
-                        uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
-                        if (uniqueID == null) {
-                            uniqueID = UUID.randomUUID().toString();
-                            SharedPreferences.Editor editor = sharedPrefs.edit();
-                            editor.putString(PREF_UNIQUE_ID, uniqueID);
-                            editor.commit();
-                        }
-                    }
-                    return uniqueID;
+//                    String uniqueID = null;
+//                    final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
+//                    if (uniqueID == null) {
+//                        SharedPreferences sharedPrefs = activity.getSharedPreferences(
+//                                PREF_UNIQUE_ID, Context.MODE_PRIVATE);
+//                        uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
+//                        if (uniqueID == null) {
+//                            uniqueID = UUID.randomUUID().toString();
+//                            SharedPreferences.Editor editor = sharedPrefs.edit();
+//                            editor.putString(PREF_UNIQUE_ID, uniqueID);
+//                            editor.commit();
+//                        }
+//                    }
+//                    return uniqueID;
+
+                    String androidID = Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID);
+                    return androidID;
                 default:
                     break;
             }

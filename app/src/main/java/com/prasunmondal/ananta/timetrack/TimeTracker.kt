@@ -108,6 +108,7 @@ class TimeTracker : AppCompatActivity() {
             findViewById<Button>(R.id.btn_startStop).text = "Stop"
             onClickReset(view)
             onClickStart(view)
+            ToSheet().log(sessionData.systemInfo, "Started - ms: " + startMillis.toString(),this)
         } else {
             stop = sdf.format(Date())
             stopMillis = System.currentTimeMillis()
@@ -136,7 +137,9 @@ class TimeTracker : AppCompatActivity() {
             timeView.text = time
 
             ToSheet().output(start, stop, time, startMillis.toString(), stopMillis.toString(), applicationContext)
+            ToSheet().log(sessionData.systemInfo, "Stopped - ms: " + stopMillis.toString() + " TotalTime: " + time, this)
         }
+
     }
 
     // Start the stopwatch running
