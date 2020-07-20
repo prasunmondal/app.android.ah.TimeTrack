@@ -30,7 +30,7 @@ class SelectCustomer : AppCompatActivity() {
         var price = findViewById<EditText>(R.id.selectCustomerPrice).text.toString()
         sessionData.currentCustomer = Customer(name, phNo, address)
         sessionData.currentCustomer.pricePerUnit = price.toFloat()
-        
+
         val i = Intent(this@SelectCustomer, TimeTracker::class.java)
         startActivity(i)
         finish()

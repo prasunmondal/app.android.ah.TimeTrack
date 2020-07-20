@@ -32,6 +32,7 @@ class ToSheet {
                 startTime,
                 endTime,
                 calculatedTime,
+                sessionData.currentCustomer.pricePerUnit.toString(),
                 sessionData.currentCustomer.getCalculatedPrice().toString()))
         } catch (e: Exception) {
 
