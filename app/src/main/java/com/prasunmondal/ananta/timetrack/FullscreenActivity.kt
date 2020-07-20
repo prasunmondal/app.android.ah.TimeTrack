@@ -10,6 +10,7 @@ import android.os.Handler
 import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
 import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_fullscreen.*
@@ -55,12 +56,6 @@ class FullscreenActivity : AppCompatActivity() {
         false
     }
 
-    fun goToCountDown() {
-        val i = Intent(this@FullscreenActivity, TimeTracker::class.java)
-        startActivity(i)
-        finish()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -70,7 +65,7 @@ class FullscreenActivity : AppCompatActivity() {
         mVisible = true
 
         Handler().postDelayed({ // This method will be executed once the timer is over
-            val i = Intent(this@FullscreenActivity, TimeTracker::class.java)
+            val i = Intent(this@FullscreenActivity, SelectCustomer::class.java)
             startActivity(i)
             finish()
         }, 2000)
