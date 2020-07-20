@@ -27,7 +27,12 @@ class ToSheet {
                 Constants.Singleton.instance.googleScript_scriptURL,
                 Constants.Singleton.instance.sheet_output_URL,
                 sessionData.currentCustomer.name,
-            listOf(sdf.format(Date()), sessionData.currentCustomer.name, startTime, endTime, calculatedTime))
+            listOf(sdf.format(Date()),
+                sessionData.currentCustomer.name,
+                startTime,
+                endTime,
+                calculatedTime,
+                sessionData.currentCustomer.getCalculatedPrice().toString()))
         } catch (e: Exception) {
 
         }

@@ -27,7 +27,10 @@ class SelectCustomer : AppCompatActivity() {
         var name = findViewById<EditText>(R.id.selectCustomerName).text.toString()
         var phNo = findViewById<EditText>(R.id.selectCustomerPhNo).text.toString()
         var address = findViewById<EditText>(R.id.selectCustomerAddress).text.toString()
+        var price = findViewById<EditText>(R.id.selectCustomerPrice).text.toString()
         sessionData.currentCustomer = Customer(name, phNo, address)
+        sessionData.currentCustomer.pricePerUnit = price.toFloat()
+        
         val i = Intent(this@SelectCustomer, TimeTracker::class.java)
         startActivity(i)
         finish()

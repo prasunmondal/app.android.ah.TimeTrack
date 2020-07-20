@@ -17,6 +17,7 @@ class Customer {
     var address = ""
     var latestStartTime = 0L
     var latestEndTime = 0L
+    var pricePerUnit = 0F
 
     constructor(name: String, phoneNumber: String, address: String) {
         this.name = name
@@ -34,5 +35,9 @@ class Customer {
 
     fun getTimerValue(): Long {
         return latestEndTime - latestStartTime
+    }
+
+    fun getCalculatedPrice(): Float {
+        return (this.latestEndTime - this.latestStartTime) * pricePerUnit
     }
 }
