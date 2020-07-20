@@ -3,6 +3,7 @@ package com.prasunmondal.ananta.timetrack.Utility.PostToSheet
 import android.content.Context
 import com.prasunmondal.ananta.timetrack.BuildConfig
 import com.prasunmondal.ananta.timetrack.Values.Constants
+import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,8 +26,8 @@ class ToSheet {
             PostToSheet().post(context,
                 Constants.Singleton.instance.googleScript_scriptURL,
                 Constants.Singleton.instance.sheet_output_URL,
-                Constants.Singleton.instance.sheet_output_name,
-            listOf(sdf.format(Date()), startTime, endTime, calculatedTime))
+                sessionData.currentCustomer!!.name,
+            listOf(sdf.format(Date()), sessionData.currentCustomer!!.name, startTime, endTime, calculatedTime))
         } catch (e: Exception) {
 
         }
