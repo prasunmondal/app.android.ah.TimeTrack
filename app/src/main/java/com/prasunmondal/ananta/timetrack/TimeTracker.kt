@@ -42,8 +42,6 @@ class TimeTracker : AppCompatActivity() {
     val sdf = SimpleDateFormat(format)
     var start = ""
     var stop = ""
-    var startMillis = System.currentTimeMillis()
-    var stopMillis = System.currentTimeMillis()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,19 +100,19 @@ class TimeTracker : AppCompatActivity() {
         if(running) {
             dateFormat.timeZone = TimeZone.getTimeZone("IST")
             start = sdf.format(Date())
-            startMillis = System.currentTimeMillis()
+            sessionData.currentCustomer.startTimer()
             findViewById<Button>(R.id.btn_startStop).text = "Stop"
             onClickReset(view)
             onClickStart(view)
-            ToSheet().log(sessionData.systemInfo, "Started - ms: " + startMillis.toString() + " TimeStamp: " + start,this)
+            ToSheet().log(sessionData.systemInfo, "Started - ms: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start,this)
         } else {
             stop = sdf.format(Date())
-            stopMillis = System.currentTimeMillis()
+            sessionData.currentCustomer.stopTimer()
             findViewById<Button>(R.id.btn_startStop).text = "Start"
             onClickStop(view)
             println("$start $stop")
 
-            seconds = ((stopMillis - startMillis) / 1000).toInt()
+            seconds = (sessionData.currentCustomer.getTimerValue() / 1000).toInt()
             val hours = seconds / 3600
             val minutes = seconds % 3600 / 60
             val secs = seconds % 60
@@ -135,7 +133,7 @@ class TimeTracker : AppCompatActivity() {
             timeView.text = time
 
             ToSheet().output(start, stop, time, applicationContext)
-            ToSheet().log(sessionData.systemInfo, "Stopped - ms: " + stopMillis.toString()  + " TimeStamp: " + stop + " TotalTime: " + time, this)
+            ToSheet().log(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + time, this)
         }
 
     }
@@ -207,7 +205,7 @@ class TimeTracker : AppCompatActivity() {
                 // If running is true, increment the
                 // seconds variable.
                 if (running) {
-                    seconds = ((System.currentTimeMillis() - startMillis) / 1000).toInt()
+                    seconds = ((System.currentTimeMillis() - sessionData.currentCustomer.latestStartTime) / 1000).toInt()
                 }
                 handler.postDelayed(this, 100)
                 // Post the code again

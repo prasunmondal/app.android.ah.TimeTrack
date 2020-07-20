@@ -26,8 +26,8 @@ class ToSheet {
             PostToSheet().post(context,
                 Constants.Singleton.instance.googleScript_scriptURL,
                 Constants.Singleton.instance.sheet_output_URL,
-                sessionData.currentCustomer!!.name,
-            listOf(sdf.format(Date()), sessionData.currentCustomer!!.name, startTime, endTime, calculatedTime))
+                sessionData.currentCustomer.name,
+            listOf(sdf.format(Date()), sessionData.currentCustomer.name, startTime, endTime, calculatedTime))
         } catch (e: Exception) {
 
         }
