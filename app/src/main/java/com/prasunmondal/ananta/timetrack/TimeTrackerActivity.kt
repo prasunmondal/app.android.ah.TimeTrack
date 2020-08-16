@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class TimeTracker : AppCompatActivity() {
+class TimeTrackerActivity : AppCompatActivity() {
 
     // Use seconds, running and wasRunning respectively
     // to record the number of seconds passed,

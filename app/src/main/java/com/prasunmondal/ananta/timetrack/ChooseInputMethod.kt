@@ -24,13 +24,13 @@ class ChooseInputMethod : AppCompatActivity() {
     }
 
     private fun goToTimeTrackActivity() {
-        val i = Intent(this@ChooseInputMethod, TimeTracker::class.java)
+        val i = Intent(this@ChooseInputMethod, TimeTrackerActivity::class.java)
         startActivity(i)
         finish()
     }
 
     private fun goToEnterTimeActivity() {
-        val i = Intent(this@ChooseInputMethod, TimeTracker::class.java)
+        val i = Intent(this@ChooseInputMethod, TimeTrackerActivity::class.java)
         startActivity(i)
         finish()
     }
