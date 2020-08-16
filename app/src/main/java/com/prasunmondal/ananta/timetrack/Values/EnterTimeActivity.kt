@@ -6,7 +6,11 @@ import android.widget.CalendarView
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.R
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import kotlinx.android.synthetic.main.activity_enter_time.*
+import java.lang.String
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EnterTimeActivity : AppCompatActivity() {
     var startHour:Int = 0
@@ -16,6 +20,9 @@ class EnterTimeActivity : AppCompatActivity() {
     var dateYear:Int = 0
     var dateMonth:Int = 0
     var dateDay:Int = 0
+    var dateToday = ""
+    var startDateTime = ""
+    var stopDateTime = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +36,38 @@ class EnterTimeActivity : AppCompatActivity() {
     }
 
     fun saveData() {
-        println("$dateYear $dateMonth $dateDay")
-        println("$startHour $startMin")
-        println("$stopHour $stopMin")
+
+        var startTimePicker = findViewById<TimePicker>(R.id.enterData_startTimePicker)
+        var stopTimePicker = findViewById<TimePicker>(R.id.enterData_stopTimePicker)
+
+        val startTime = String
+            .format(
+                Locale.getDefault(),
+                "%d:%02d:%02d", startHour,
+                startMin, 0
+            )
+
+        val stopTime = String
+            .format(
+                Locale.getDefault(),
+                "%d:%02d:%02d", stopHour,
+                stopMin, 0
+            )
+
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        dateFormat.timeZone = TimeZone.getTimeZone("IST")
+        val format = "yyyy-MM-dd "
+        val sdf = SimpleDateFormat(format)
+
+        dateToday = sdf.format(Date())
+
+        startDateTime = dateToday + startTime + ":000"
+        stopDateTime = dateToday + stopTime + ":000"
+
+        SessionData.Singleton.instance.currentCustomer.startTime = startDateTime
+        SessionData.Singleton.instance.currentCustomer.endTime = stopDateTime
+
+        ToSheets.addTransaction(SessionData.Singleton.instance.currentCustomer, "Entered", applicationContext)
     }
 
     private fun addChangeListeners() {
