@@ -1,85 +1,55 @@
 package com.prasunmondal.ananta.timetrack.Utility.PostToSheet
 
+import com.prasunmondal.lib.posttogsheets.PostToGSheet
 
-/*
-requires
-
-    PERMISSION:
+class ToSheets private constructor() {
 
 
-    implementation 'com.android.volley:volley:1.1.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
- */
 
-import android.content.Context
-import android.text.TextUtils
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.Response
-import com.android.volley.RetryPolicy
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import java.lang.reflect.Method
-import java.util.HashMap
+    companion object {
 
-class PostToSheet() {
+        val googleScript_scriptURL = "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec"
+        val sheet_output_URL =     "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0" // project_Ananta
+        val sheet_devlogs_URL = "https://docs.google.com/spreadsheets/d/1nMItEbUTq8do0XZDOWr5gsTugwSxqoWPfCw6yqbroNw/edit#gid=0" // Project_Ananta_devlogs
+        val sheet_devlogs_tabName = "run_logs"
+        val logs: PostToGSheet =
+            PostToGSheet(
+                googleScript_scriptURL,
+                sheet_output_URL,
+                "logs",
+                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
+                "template",
+                true, null
+            )
 
-    fun post(context: Context, scriptID: String, spreadsheetURL: String, sheetName: String, list: List<String>) {
-        var sendString = TextUtils.join("◔", list)
+        val error: PostToGSheet =
+            PostToGSheet(
+                googleScript_scriptURL,
+                sheet_output_URL,
+                "errors",
+                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
+                "template",
+                true, null
+            )
 
-        val stringRequest: StringRequest =
-            object : StringRequest(
-                Method.POST, scriptID,
-                Response.Listener { },
-                Response.ErrorListener {}
-            ) {
-                override fun getParams(): Map<String, String> {
-                    val params: MutableMap<String, String> =
-                        HashMap()
-                    //here we pass params
-                    params["action"] = "addItem"
-                    params["spreadsheetURL"] = spreadsheetURL
-                    params["sheetName"] = sheetName
-                    params["text"] = sendString
-                    return params
-                }
-            }
-        val socketTimeOut = 120000 // u can change this .. here it is 120 seconds
-        val retryPolicy: RetryPolicy =
-            DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        stringRequest.retryPolicy = retryPolicy
-        val queue = Volley.newRequestQueue(context)
-        queue.add(stringRequest)
+        val addTransaction_Calculated: PostToGSheet =
+            PostToGSheet(
+                googleScript_scriptURL,
+                sheet_output_URL,
+                "Data",
+                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
+                "template",
+                true, listOf("Calculated")
+            )
+
+        val addTransaction_Entered: PostToGSheet =
+            PostToGSheet(
+                googleScript_scriptURL,
+                sheet_output_URL,
+                "Data",
+                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
+                "template",
+                true, listOf("Manual Entry")
+            )
     }
 }
-
-
-
-/*
-
-Sheet Script:
-
-
-var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0");
-
-var sheet = ss.getSheetByName('Items'); // be very careful ... it is the sheet name .. so it should match
-
-function doPost(e){
-  var action = e.parameter.action;
-  if(action == 'addItem'){
-    return addItem(e);
-  }
-}
-
-function addItem(e){
-  var date =  new Date();
-  var text = e.parameter.text;
-  var texts = [{}];
-
-  texts = [date].concat(text.split("◔"));
-  sheet.appendRow(texts);
-
-  return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
-}
-
-
- */

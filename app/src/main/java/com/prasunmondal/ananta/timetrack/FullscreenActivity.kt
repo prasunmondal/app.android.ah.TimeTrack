@@ -11,7 +11,7 @@ import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
-import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 import java.util.*
@@ -71,7 +71,7 @@ class FullscreenActivity : AppCompatActivity() {
         }, 2000)
 
         populateSystemInfo()
-        ToSheet().log(sessionData.systemInfo, "Application Started", this)
+        ToSheets.logs.post(listOf(sessionData.systemInfo, "Application Started"), this)
         // Set up the user interaction to manually show or hide the system UI.
 //        fullscreen_content.setOnClickListener { toggle() }
 

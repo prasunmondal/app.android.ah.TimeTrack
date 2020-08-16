@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheet
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
@@ -104,7 +104,7 @@ class TimeTrackerActivity : AppCompatActivity() {
             findViewById<Button>(R.id.btn_startStop).text = "Stop"
             onClickReset(view)
             onClickStart(view)
-            ToSheet().log(sessionData.systemInfo, "Started - ms: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start,this)
+            ToSheets.logs.post(listOf(sessionData.systemInfo, "Started - ms: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start), this)
         } else {
             stop = sdf.format(Date())
             sessionData.currentCustomer.stopTimer()
@@ -132,8 +132,8 @@ class TimeTrackerActivity : AppCompatActivity() {
             // Set the text view text.
             timeView.text = time
 
-            ToSheet().output(start, stop, time, applicationContext)
-            ToSheet().log(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + time, this)
+            ToSheets.addTransaction_Calculated.post(listOf(start, stop, time), applicationContext)
+            ToSheets.logs.post(listOf(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + time), this)
         }
 
     }
