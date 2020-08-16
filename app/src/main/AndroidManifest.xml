@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Values.EnterTimeActivity"
+            android:label="@string/title_activity_enter_time"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ChooseInputMethod"
             android:label="@string/title_activity_choose_input_method"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Utility.PostToSheet.SelectCustomer"
             android:label="@string/title_activity_select_customer"

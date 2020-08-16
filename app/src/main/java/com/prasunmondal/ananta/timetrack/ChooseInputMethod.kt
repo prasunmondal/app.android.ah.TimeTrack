@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Values.EnterTimeActivity
 
 import kotlinx.android.synthetic.main.activity_choose_input_method.*
 
@@ -15,11 +16,11 @@ class ChooseInputMethod : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
-    private fun onClickTimeTrack(view: View) {
+    fun onClickTimeTrack(view: View) {
         goToTimeTrackActivity()
     }
 
-    private fun onClickEnterTime(view: View) {
+    fun onClickEnterTime(view: View) {
         goToEnterTimeActivity()
     }
 
@@ -30,7 +31,7 @@ class ChooseInputMethod : AppCompatActivity() {
     }
 
     private fun goToEnterTimeActivity() {
-        val i = Intent(this@ChooseInputMethod, TimeTrackerActivity::class.java)
+        val i = Intent(this@ChooseInputMethod, EnterTimeActivity::class.java)
         startActivity(i)
         finish()
     }
