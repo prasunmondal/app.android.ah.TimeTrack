@@ -35,12 +35,12 @@ class EnterTimeActivity : AppCompatActivity() {
     }
 
     private fun addChangeListeners() {
-        var datePicker: CalendarView = findViewById(R.id.enterData_datePicker)
-        datePicker.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            dateYear = year
-            dateMonth = month
-            dateDay = dayOfMonth
-        }
+//        var datePicker: CalendarView = findViewById(R.id.enterData_datePicker)
+//        datePicker.setOnDateChangeListener { view, year, month, dayOfMonth ->
+//            dateYear = year
+//            dateMonth = month
+//            dateDay = dayOfMonth
+//        }
 
         var startTimePicker = findViewById<TimePicker>(R.id.enterData_startTimePicker)
         startTimePicker.setOnTimeChangedListener { view, hourOfDay, minute ->
