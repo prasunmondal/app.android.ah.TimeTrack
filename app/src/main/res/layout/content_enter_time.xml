@@ -12,7 +12,7 @@
         android:id="@+id/enterTime_btn_save"
         android:layout_width="135dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/btn_paybill"
         android:backgroundTint="#E0F0F1"
         android:gravity="center"
@@ -36,12 +36,12 @@
         android:scaleY="1"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:textAlignment="viewStart"
-        android:textSize="1sp"
+        android:textSize="8sp"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/enterTime_label_startTime" />
 
     <TimePicker
         android:id="@+id/enterData_stopTimePicker"
@@ -49,11 +49,33 @@
         android:layout_height="230dp"
         android:layout_centerHorizontal="true"
         android:datePickerMode="calendar"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
+        android:scaleX="1"
+        android:scaleY="1"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="@+id/enterData_startTimePicker"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterTime_label_stopTime" />
+
+    <TextView
+        android:id="@+id/enterTime_label_startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Start Time:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/enterTime_label_stopTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Stop Time:"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterData_startTimePicker" />
 </androidx.constraintlayout.widget.ConstraintLayout>
