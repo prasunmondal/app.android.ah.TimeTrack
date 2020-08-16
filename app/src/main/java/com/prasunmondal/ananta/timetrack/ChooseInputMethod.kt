@@ -1,7 +1,8 @@
 package com.prasunmondal.ananta.timetrack
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_choose_input_method.*
@@ -12,11 +13,25 @@ class ChooseInputMethod : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_input_method)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
+    private fun onClickTimeTrack(view: View) {
+        goToTimeTrackActivity()
+    }
+
+    private fun onClickEnterTime(view: View) {
+        goToEnterTimeActivity()
+    }
+
+    private fun goToTimeTrackActivity() {
+        val i = Intent(this@ChooseInputMethod, TimeTracker::class.java)
+        startActivity(i)
+        finish()
+    }
+
+    private fun goToEnterTimeActivity() {
+        val i = Intent(this@ChooseInputMethod, TimeTracker::class.java)
+        startActivity(i)
+        finish()
+    }
 }

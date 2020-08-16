@@ -8,4 +8,24 @@
     tools:context=".ChooseInputMethod"
     tools:showIn="@layout/activity_choose_input_method">
 
+    <Button
+        android:id="@+id/chooseInputMethod_btn_enterTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Enter Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chooseInputMethod_btn_trackTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track Time"
+        android:onClick="onClickTimeTrack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseInputMethod_btn_enterTime" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="goToCountDown"
+        android:onClick="onClickInfoSaveButton"
         android:text="Go!"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
