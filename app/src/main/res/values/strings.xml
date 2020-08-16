@@ -5,4 +5,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_time_tracker">TimeTracker</string>
     <string name="title_activity_select_customer">SelectCustomer</string>
+    <string name="title_activity_choose_input_method">ChooseInputMethod</string>
 </resources>
