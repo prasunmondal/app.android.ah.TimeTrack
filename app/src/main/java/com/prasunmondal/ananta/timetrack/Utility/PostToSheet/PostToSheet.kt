@@ -1,5 +1,7 @@
 package com.prasunmondal.ananta.timetrack.Utility.PostToSheet
 
+import android.content.Context
+import com.prasunmondal.ananta.timetrack.Values.Customer
 import com.prasunmondal.lib.posttogsheets.PostToGSheet
 
 class ToSheets private constructor() {
@@ -39,7 +41,7 @@ class ToSheets private constructor() {
                 "Data",
                 "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
                 "template",
-                true, listOf("Calculated")
+                true, null
             )
 
         val addTransaction_Entered: PostToGSheet =
@@ -49,7 +51,19 @@ class ToSheets private constructor() {
                 "Data",
                 "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
                 "template",
-                true, listOf("Manual Entry")
+                true, null
             )
+
+        fun addTransaction(c: Customer, type: String, context: Context) {
+            var postTo = addTransaction_Calculated
+            if(type == "Entered") {
+                postTo = addTransaction_Calculated
+            }
+            if(type == "Calculated") {
+                postTo = addTransaction_Entered
+
+            }
+            postTo.post(listOf(type, c.name, c.phoneNumber, c.address, c.startTime, c.endTime, c.totalTime, c.pricePerUnit.toString(), c.prevBal.toString()), context)
+        }
     }
 }

@@ -132,7 +132,10 @@ class TimeTrackerActivity : AppCompatActivity() {
             // Set the text view text.
             timeView.text = time
 
-            ToSheets.addTransaction_Calculated.post(listOf(start, stop, time), applicationContext)
+            sessionData.currentCustomer.startTime = start
+            sessionData.currentCustomer.endTime = stop
+            sessionData.currentCustomer.totalTime = time
+            ToSheets.addTransaction(sessionData.currentCustomer, "Calculated", applicationContext)
             ToSheets.logs.post(listOf(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + time), this)
         }
 

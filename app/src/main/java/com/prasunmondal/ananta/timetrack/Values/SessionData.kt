@@ -18,6 +18,10 @@ class Customer {
     var latestStartTime = 0L
     var latestEndTime = 0L
     var pricePerUnit = 0F
+    var prevBal = 0F
+    var startTime = ""
+    var endTime = ""
+    var totalTime =  ""
 
     constructor(name: String, phoneNumber: String, address: String) {
         this.name = name
