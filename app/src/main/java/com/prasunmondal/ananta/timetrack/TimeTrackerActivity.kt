@@ -142,20 +142,10 @@ class TimeTrackerActivity : AppCompatActivity() {
             sessionData.currentCustomer.endTime = stop
             sessionData.currentCustomer.totalTime = time
 
-            //        writeData()
+//                    writeData()
             goToSavePage()
         }
 
-    }
-
-    fun writeData() {
-        ToSheets.addTransaction(sessionData.currentCustomer, "Calculated", applicationContext)
-        ToSheets.logs.post(
-            listOf(
-                sessionData.systemInfo,
-                "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString() + " TimeStamp: " + stop + " TotalTime: " + sessionData.currentCustomer.totalTime
-            ), this
-        )
     }
 
     fun goToSavePage() {
@@ -163,51 +153,27 @@ class TimeTrackerActivity : AppCompatActivity() {
         startActivity(i)
     }
 
-    // Start the stopwatch running
-    // when the Start button is clicked.
-    // Below method gets called
-    // when the Start button is clicked.
     fun onClickStart(view: View?) {
         running = true
     }
 
-    // Stop the stopwatch running
-    // when the Stop button is clicked.
-    // Below method gets called
-    // when the Stop button is clicked.
     fun onClickStop(view: View?) {
         running = false
     }
 
-    // Reset the stopwatch when
-    // the Reset button is clicked.
-    // Below method gets called
-    // when the Reset button is clicked.
     fun onClickReset(view: View?) {
         running = false
         seconds = 0
     }
 
-    // Sets the NUmber of seconds on the timer.
-    // The runTimer() method uses a Handler
-    // to increment the seconds and
-    // update the text view.
     private fun runTimer() {
 
-        // Get the text view.
         val timeView = findViewById(
             R.id.textView
         ) as TextView
 
-        // Creates a new Handler
         val handler = Handler()
 
-        // Call the post() method,
-        // passing in a new Runnable.
-        // The post() method processes
-        // code without a delay,
-        // so the code in the Runnable
-        // will run almost immediately.
         handler.post(object : Runnable {
             override fun run() {
 
@@ -227,15 +193,11 @@ class TimeTrackerActivity : AppCompatActivity() {
                 // Set the text view text.
                 timeView.text = time
 
-                // If running is true, increment the
-                // seconds variable.
                 if (running) {
                     seconds =
                         ((System.currentTimeMillis() - sessionData.currentCustomer.latestStartTime) / 1000).toInt()
                 }
                 handler.postDelayed(this, 100)
-                // Post the code again
-                // with a delay of 1 second.
             }
         })
     }

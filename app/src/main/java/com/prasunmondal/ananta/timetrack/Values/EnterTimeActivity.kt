@@ -34,7 +34,6 @@ class EnterTimeActivity : AppCompatActivity() {
 
     fun onClickSave(view: View) {
         saveData()
-//        writeData()
         goToSavePage()
     }
 
@@ -74,14 +73,7 @@ class EnterTimeActivity : AppCompatActivity() {
 
         SessionData.Singleton.instance.currentCustomer.startTime = startDateTime
         SessionData.Singleton.instance.currentCustomer.endTime = stopDateTime
-    }
-
-    private fun writeData() {
-        ToSheets.addTransaction(
-            SessionData.Singleton.instance.currentCustomer,
-            "Entered",
-            applicationContext
-        )
+//        SessionData.Singleton.instance.currentCustomer.getCalculatedPrice()
     }
 
     private fun addChangeListeners() {
