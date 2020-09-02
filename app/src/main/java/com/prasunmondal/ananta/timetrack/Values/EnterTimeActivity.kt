@@ -1,11 +1,14 @@
 package com.prasunmondal.ananta.timetrack.Values
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CalendarView
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.ConfirmSave
 import com.prasunmondal.ananta.timetrack.R
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import kotlinx.android.synthetic.main.activity_enter_time.*
 import java.lang.String
@@ -33,12 +36,19 @@ class EnterTimeActivity : AppCompatActivity() {
 
     fun onClickSave(view: View) {
         saveData()
+//        writeData()
+        goToSavePage()
+    }
+
+    fun goToSavePage() {
+        val i = Intent(this@EnterTimeActivity, ConfirmSave::class.java)
+        startActivity(i)
     }
 
     fun saveData() {
 
-        var startTimePicker = findViewById<TimePicker>(R.id.enterData_startTimePicker)
-        var stopTimePicker = findViewById<TimePicker>(R.id.enterData_stopTimePicker)
+//        var startTimePicker = findViewById<TimePicker>(R.id.enterData_startTimePicker)
+//        var stopTimePicker = findViewById<TimePicker>(R.id.enterData_stopTimePicker)
 
         val startTime = String
             .format(
@@ -66,7 +76,9 @@ class EnterTimeActivity : AppCompatActivity() {
 
         SessionData.Singleton.instance.currentCustomer.startTime = startDateTime
         SessionData.Singleton.instance.currentCustomer.endTime = stopDateTime
+    }
 
+    private fun writeData() {
         ToSheets.addTransaction(SessionData.Singleton.instance.currentCustomer, "Entered", applicationContext)
     }
 

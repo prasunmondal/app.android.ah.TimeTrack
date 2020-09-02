@@ -1,6 +1,7 @@
 package com.prasunmondal.ananta.timetrack
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -135,10 +136,20 @@ class TimeTrackerActivity : AppCompatActivity() {
             sessionData.currentCustomer.startTime = start
             sessionData.currentCustomer.endTime = stop
             sessionData.currentCustomer.totalTime = time
-            ToSheets.addTransaction(sessionData.currentCustomer, "Calculated", applicationContext)
-            ToSheets.logs.post(listOf(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + time), this)
+
+            //        writeData()
+            goToSavePage()
         }
 
+    }
+
+    fun writeData() {
+        ToSheets.addTransaction(sessionData.currentCustomer, "Calculated", applicationContext)
+        ToSheets.logs.post(listOf(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + sessionData.currentCustomer.totalTime), this)
+    }
+    fun goToSavePage() {
+        val i = Intent(this@TimeTrackerActivity, ConfirmSave::class.java)
+        startActivity(i)
     }
 
     // Start the stopwatch running
