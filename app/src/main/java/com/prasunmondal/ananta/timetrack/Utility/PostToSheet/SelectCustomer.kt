@@ -8,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.ChooseInputMethod
 import com.prasunmondal.ananta.timetrack.R
 import com.prasunmondal.ananta.timetrack.Values.Customer
-import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
-
 import kotlinx.android.synthetic.main.activity_select_customer.*
+import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 
 class SelectCustomer : AppCompatActivity() {
 

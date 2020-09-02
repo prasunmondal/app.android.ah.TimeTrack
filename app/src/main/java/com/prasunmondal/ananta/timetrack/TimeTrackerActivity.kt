@@ -9,11 +9,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
-import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
 import java.text.SimpleDateFormat
 import java.util.*
+import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
 
 
 class TimeTrackerActivity : AppCompatActivity() {
@@ -98,14 +98,19 @@ class TimeTrackerActivity : AppCompatActivity() {
 
     fun toggleTimer(view: View) {
         running = !running
-        if(running) {
+        if (running) {
             dateFormat.timeZone = TimeZone.getTimeZone("IST")
             start = sdf.format(Date())
             sessionData.currentCustomer.startTimer()
             findViewById<Button>(R.id.btn_startStop).text = "Stop"
             onClickReset(view)
             onClickStart(view)
-            ToSheets.logs.post(listOf(sessionData.systemInfo, "Started - ms: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start), this)
+            ToSheets.logs.post(
+                listOf(
+                    sessionData.systemInfo,
+                    "Started - ms: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start
+                ), this
+            )
         } else {
             stop = sdf.format(Date())
             sessionData.currentCustomer.stopTimer()
@@ -145,8 +150,14 @@ class TimeTrackerActivity : AppCompatActivity() {
 
     fun writeData() {
         ToSheets.addTransaction(sessionData.currentCustomer, "Calculated", applicationContext)
-        ToSheets.logs.post(listOf(sessionData.systemInfo, "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString()  + " TimeStamp: " + stop + " TotalTime: " + sessionData.currentCustomer.totalTime), this)
+        ToSheets.logs.post(
+            listOf(
+                sessionData.systemInfo,
+                "Stopped - ms: " + sessionData.currentCustomer.latestEndTime.toString() + " TimeStamp: " + stop + " TotalTime: " + sessionData.currentCustomer.totalTime
+            ), this
+        )
     }
+
     fun goToSavePage() {
         val i = Intent(this@TimeTrackerActivity, ConfirmSave::class.java)
         startActivity(i)
@@ -219,7 +230,8 @@ class TimeTrackerActivity : AppCompatActivity() {
                 // If running is true, increment the
                 // seconds variable.
                 if (running) {
-                    seconds = ((System.currentTimeMillis() - sessionData.currentCustomer.latestStartTime) / 1000).toInt()
+                    seconds =
+                        ((System.currentTimeMillis() - sessionData.currentCustomer.latestStartTime) / 1000).toInt()
                 }
                 handler.postDelayed(this, 100)
                 // Post the code again

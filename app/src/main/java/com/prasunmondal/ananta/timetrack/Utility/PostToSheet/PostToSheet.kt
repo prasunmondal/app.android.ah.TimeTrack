@@ -7,12 +7,14 @@ import com.prasunmondal.lib.posttogsheets.PostToGSheet
 class ToSheets private constructor() {
 
 
-
     companion object {
 
-        val googleScript_scriptURL = "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec"
-        val sheet_output_URL =     "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0" // project_Ananta
-        val sheet_devlogs_URL = "https://docs.google.com/spreadsheets/d/1nMItEbUTq8do0XZDOWr5gsTugwSxqoWPfCw6yqbroNw/edit#gid=0" // Project_Ananta_devlogs
+        val googleScript_scriptURL =
+            "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec"
+        val sheet_output_URL =
+            "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0" // project_Ananta
+        val sheet_devlogs_URL =
+            "https://docs.google.com/spreadsheets/d/1nMItEbUTq8do0XZDOWr5gsTugwSxqoWPfCw6yqbroNw/edit#gid=0" // Project_Ananta_devlogs
         val sheet_devlogs_tabName = "run_logs"
         val logs: PostToGSheet =
             PostToGSheet(
@@ -56,14 +58,26 @@ class ToSheets private constructor() {
 
         fun addTransaction(c: Customer, type: String, context: Context) {
             var postTo = addTransaction_Calculated
-            if(type == "Entered") {
+            if (type == "Entered") {
                 postTo = addTransaction_Calculated
             }
-            if(type == "Calculated") {
+            if (type == "Calculated") {
                 postTo = addTransaction_Entered
 
             }
-            postTo.post(listOf(type, c.name, c.phoneNumber, c.address, c.startTime, c.endTime, c.totalTime, c.pricePerUnit.toString(), c.prevBal.toString()), context)
+            postTo.post(
+                listOf(
+                    type,
+                    c.name,
+                    c.phoneNumber,
+                    c.address,
+                    c.startTime,
+                    c.endTime,
+                    c.totalTime,
+                    c.pricePerUnit.toString(),
+                    c.prevBal.toString()
+                ), context
+            )
         }
     }
 }

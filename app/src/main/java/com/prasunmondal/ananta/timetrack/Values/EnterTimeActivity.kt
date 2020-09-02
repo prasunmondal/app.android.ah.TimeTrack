@@ -3,12 +3,10 @@ package com.prasunmondal.ananta.timetrack.Values
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.CalendarView
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.ConfirmSave
 import com.prasunmondal.ananta.timetrack.R
-import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import kotlinx.android.synthetic.main.activity_enter_time.*
 import java.lang.String
@@ -16,13 +14,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class EnterTimeActivity : AppCompatActivity() {
-    var startHour:Int = 0
-    var startMin:Int = 0
-    var stopHour:Int = 0
-    var stopMin:Int = 0
-    var dateYear:Int = 0
-    var dateMonth:Int = 0
-    var dateDay:Int = 0
+    var startHour: Int = 0
+    var startMin: Int = 0
+    var stopHour: Int = 0
+    var stopMin: Int = 0
+    var dateYear: Int = 0
+    var dateMonth: Int = 0
+    var dateDay: Int = 0
     var dateToday = ""
     var startDateTime = ""
     var stopDateTime = ""
@@ -79,7 +77,11 @@ class EnterTimeActivity : AppCompatActivity() {
     }
 
     private fun writeData() {
-        ToSheets.addTransaction(SessionData.Singleton.instance.currentCustomer, "Entered", applicationContext)
+        ToSheets.addTransaction(
+            SessionData.Singleton.instance.currentCustomer,
+            "Entered",
+            applicationContext
+        )
     }
 
     private fun addChangeListeners() {

@@ -21,7 +21,7 @@ class Customer {
     var prevBal = 0F
     var startTime = ""
     var endTime = ""
-    var totalTime =  ""
+    var totalTime = ""
 
     constructor(name: String, phoneNumber: String, address: String) {
         this.name = name

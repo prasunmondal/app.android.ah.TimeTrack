@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Time Track'
+rootProject.name = 'Time Track'

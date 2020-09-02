@@ -3,7 +3,6 @@ package GetDeviceInfo;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -26,7 +25,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.UUID;
 
 public class DeviceInfo {
 
