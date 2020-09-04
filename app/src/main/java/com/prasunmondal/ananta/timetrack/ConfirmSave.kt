@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
+import com.prasunmondal.ananta.timetrack.Utils.TimeUtils
 import com.prasunmondal.ananta.timetrack.Values.SessionData
 
 import kotlinx.android.synthetic.main.activity_confirm_save.*
@@ -17,8 +18,11 @@ class ConfirmSave : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val confirmTimeView = findViewById(R.id.confirmTimeView) as TextView
-        confirmTimeView.text = SessionData.Singleton.instance.currentCustomer.totalTime
-        println(SessionData.Singleton.instance.currentCustomer.totalTime)
+        val showString = TimeUtils.msToString(
+            TimeUtils.diff(SessionData.Singleton.instance.currentCustomer.latestStartTime,
+                SessionData.Singleton.instance.currentCustomer.latestEndTime))
+        confirmTimeView.text = showString
+        println(showString)
     }
 
     fun onClickSave(view: View) {

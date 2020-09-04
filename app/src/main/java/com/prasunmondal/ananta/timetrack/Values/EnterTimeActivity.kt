@@ -7,11 +7,14 @@ import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.ConfirmSave
 import com.prasunmondal.ananta.timetrack.R
-import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
+import com.prasunmondal.ananta.timetrack.Utils.TimeUtils
 import kotlinx.android.synthetic.main.activity_enter_time.*
+
 import java.lang.String
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class EnterTimeActivity : AppCompatActivity() {
     var startHour: Int = 0
@@ -30,10 +33,12 @@ class EnterTimeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_enter_time)
         setSupportActionBar(toolbar)
         addChangeListeners()
+        SessionData.Singleton.instance.currentCustomer.latestStartTime = System.currentTimeMillis()
+        SessionData.Singleton.instance.currentCustomer.latestEndTime = System.currentTimeMillis()
     }
 
     fun onClickSave(view: View) {
-        saveData()
+//        saveData()
         goToSavePage()
     }
 
@@ -44,9 +49,7 @@ class EnterTimeActivity : AppCompatActivity() {
 
     fun saveData() {
 
-//        var startTimePicker = findViewById<TimePicker>(R.id.enterData_startTimePicker)
-//        var stopTimePicker = findViewById<TimePicker>(R.id.enterData_stopTimePicker)
-
+        SessionData.Singleton.instance.currentCustomer.latestStartTime = System.currentTimeMillis()
         val startTime = String
             .format(
                 Locale.getDefault(),
@@ -73,27 +76,28 @@ class EnterTimeActivity : AppCompatActivity() {
 
         SessionData.Singleton.instance.currentCustomer.startTime = startDateTime
         SessionData.Singleton.instance.currentCustomer.endTime = stopDateTime
-//        SessionData.Singleton.instance.currentCustomer.getCalculatedPrice()
     }
 
     private fun addChangeListeners() {
-//        var datePicker: CalendarView = findViewById(R.id.enterData_datePicker)
-//        datePicker.setOnDateChangeListener { view, year, month, dayOfMonth ->
-//            dateYear = year
-//            dateMonth = month
-//            dateDay = dayOfMonth
-//        }
-
         var startTimePicker = findViewById<TimePicker>(R.id.enterData_startTimePicker)
         startTimePicker.setOnTimeChangedListener { view, hourOfDay, minute ->
             startHour = hourOfDay
             startMin = minute
+            val t = TimeUtils.hrMinToMs(startTimePicker.hour, startTimePicker.minute)
+            println(t)
+            println(System.currentTimeMillis())
+            SessionData.Singleton.instance.currentCustomer.latestStartTime = t
+
         }
 
         var stopTimePicker = findViewById<TimePicker>(R.id.enterData_stopTimePicker)
         stopTimePicker.setOnTimeChangedListener { view, hourOfDay, minute ->
             stopHour = hourOfDay
             stopMin = minute
+            val t = TimeUtils.hrMinToMs(stopTimePicker.hour, stopTimePicker.minute)
+            println(t)
+            println(System.currentTimeMillis())
+            SessionData.Singleton.instance.currentCustomer.latestEndTime = TimeUtils.hrMinToMs(stopTimePicker.hour, stopTimePicker.minute)
         }
     }
 }
