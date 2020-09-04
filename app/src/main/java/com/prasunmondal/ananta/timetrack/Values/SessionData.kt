@@ -1,5 +1,7 @@
 package com.prasunmondal.ananta.timetrack.Values
 
+import com.prasunmondal.ananta.timetrack.Utils.TimeUtils
+
 class SessionData {
 
     object Singleton {
@@ -43,5 +45,9 @@ class Customer {
 
     fun getCalculatedPrice(): Float {
         return (this.latestEndTime - this.latestStartTime) * pricePerUnit
+    }
+
+    fun getTimeDiff(): Long {
+        return TimeUtils.diff(this.latestStartTime, this.latestEndTime)
     }
 }
