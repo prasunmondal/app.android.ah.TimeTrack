@@ -52,14 +52,11 @@ class SelectCustomer : AppCompatActivity() {
             ArrayAdapter(this, android.R.layout.simple_spinner_item, geeks)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         dropdown.adapter = dataAdapter
-        val nameView = findViewById<TextView>(R.id.custNameView)
-        val contactView = findViewById<TextView>(R.id.custContactView)
-        val addressView = findViewById<TextView>(R.id.custAddressView)
-        nameView.text = ""
-        contactView.text = ""
-        addressView.text = ""
+        bottomToolbarConfig("Downloading...",false)
     }
+
     private fun onCustomerListDownlaodComplete() {
+        bottomToolbarConfig("Select Name", true)
         populateAllCustomerDetails()
         loadDataToSpinner()
         updateDisplayValues()
@@ -91,7 +88,7 @@ class SelectCustomer : AppCompatActivity() {
         dropdown.adapter = dataAdapter
     }
 
-    fun onClickInfoSaveButton(view: View) {
+    fun onClickInfoSaveButton() {
         println("clicked - goToCountDown")
         if(getSelectedCustomer()==null) {
             Toast.makeText(this, "Select a valid name", Toast.LENGTH_SHORT).show()
@@ -113,10 +110,13 @@ class SelectCustomer : AppCompatActivity() {
                     nameView.text = LABEL_NAME + c.name
                     contactView.text = LABEL_CONTACT_NO + c.phoneNumber
                     addressView.text = LABEL_ADDRESS + c.address
+
+                    bottomToolbarConfig("Next", true)
                 }
             }
         } else {
-            nameView.text = selectCustomerLabel
+            bottomToolbarConfig("Select Name", true)
+            nameView.text = ""
             contactView.text = ""
             addressView.text = ""
         }
@@ -129,7 +129,6 @@ class SelectCustomer : AppCompatActivity() {
     private fun goToChooseInputMethod() {
         val i = Intent(this@SelectCustomer, ChooseInputMethod::class.java)
         startActivity(i)
-        finish()
     }
 
     private fun isCustomerSelectionValid(): Boolean {
@@ -144,5 +143,17 @@ class SelectCustomer : AppCompatActivity() {
             }
         }
         return null
+    }
+
+    private fun bottomToolbarConfig(text: String, clickEnabled: Boolean) {
+        var btn = findViewById<Button>(R.id.btn_selectCust_next)
+        btn.text = text
+        if(clickEnabled) {
+            btn.setOnClickListener {
+                onClickInfoSaveButton()
+            }
+        } else {
+            btn.setOnClickListener { }
+        }
     }
 }
