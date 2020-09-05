@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.ananta.timetrack.Values.EnterTimeActivity
+import com.prasunmondal.ananta.timetrack.values.EnterTimeActivity
 
 import kotlinx.android.synthetic.main.activity_choose_input_method.*
 

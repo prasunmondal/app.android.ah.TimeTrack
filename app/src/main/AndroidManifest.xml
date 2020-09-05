@@ -18,7 +18,7 @@
             android:label="@string/title_activity_confirm_save"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Values.EnterTimeActivity"
+            android:name=".values.EnterTimeActivity"
             android:label="@string/title_activity_enter_time"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

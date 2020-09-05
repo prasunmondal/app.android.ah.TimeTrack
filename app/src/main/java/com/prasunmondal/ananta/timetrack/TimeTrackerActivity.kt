@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
 import java.text.SimpleDateFormat
 import java.util.*
-import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
+import com.prasunmondal.ananta.timetrack.values.SessionData.Singleton.instance as sessionData
 
 
 class TimeTrackerActivity : AppCompatActivity() {

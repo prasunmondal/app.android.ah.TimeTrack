@@ -14,7 +14,7 @@ import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 import java.util.*
-import com.prasunmondal.ananta.timetrack.Values.SessionData.Singleton.instance as sessionData
+import com.prasunmondal.ananta.timetrack.values.SessionData.Singleton.instance as sessionData
 
 class FullscreenActivity : AppCompatActivity() {
     private val mHideHandler = Handler()

@@ -1,6 +1,6 @@
-package com.prasunmondal.ananta.timetrack.Values
+package com.prasunmondal.ananta.timetrack.values
 
-import com.prasunmondal.ananta.timetrack.Utils.TimeUtils
+import com.prasunmondal.ananta.timetrack.utils.TimeUtils
 
 class SessionData {
 
@@ -8,7 +8,6 @@ class SessionData {
         val instance = SessionData()
     }
 
-    var uniqueDeviceID = ""
     var systemInfo = ""
     lateinit var currentCustomer: Customer
 }
