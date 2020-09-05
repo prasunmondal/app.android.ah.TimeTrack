@@ -8,6 +8,26 @@
     tools:context=".Utility.PostToSheet.SelectCustomer"
     tools:showIn="@layout/activity_select_customer">
 
+    <Spinner
+        android:id="@+id/custNameSelection"
+        android:layout_width="373dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="40dp"
+        android:background="#35383A"
+        android:ems="10"
+        android:entries="@array/member_names"
+        android:fadingEdge="horizontal|vertical"
+        android:forceDarkAllowed="true"
+        android:popupBackground="#61666B"
+        android:prompt="@string/app_name"
+        android:textColor="#1a73e8"
+        android:textColorHint="#292828"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -17,62 +37,40 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectCustomerAddress" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/selectCustomerName"
+    <TextView
+        android:id="@+id/custNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="128dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
+        android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/custNameSelection" />
 
-    <EditText
-        android:id="@+id/selectCustomerAddress"
+    <TextView
+        android:id="@+id/custContactView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectCustomerPhNo" />
-
-    <EditText
-        android:id="@+id/selectCustomerPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Price"
-        android:inputType="number|textPersonName|textEmailAddress|phone"
+        android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectCustomerAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/custNameView" />
 
-    <EditText
-        android:id="@+id/selectCustomerPhNo"
+    <TextView
+        android:id="@+id/custAddressView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="textPersonName|phone"
-        android:phoneNumber="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectCustomerName" />
+        app:layout_constraintTop_toBottomOf="@+id/custContactView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

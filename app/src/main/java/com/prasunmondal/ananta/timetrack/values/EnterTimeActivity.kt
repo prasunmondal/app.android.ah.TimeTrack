@@ -35,16 +35,16 @@ class EnterTimeActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToSavePage() {
-        val i = Intent(this@EnterTimeActivity, ConfirmSave::class.java)
-        startActivity(i)
-    }
-
     private fun saveData() {
         session.currentCustomer.latestStartTime =
             TimeUtils.hrMinToMs(startTimePicker.hour, startTimePicker.minute)
         session.currentCustomer.latestEndTime =
             TimeUtils.hrMinToMs(stopTimePicker.hour, stopTimePicker.minute)
+    }
+
+    private fun goToSavePage() {
+        val i = Intent(this@EnterTimeActivity, ConfirmSave::class.java)
+        startActivity(i)
     }
 
     private fun isValidInput(): Boolean {
