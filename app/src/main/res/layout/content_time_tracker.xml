@@ -9,23 +9,18 @@
     tools:context=".TimeTrackerActivity"
     tools:showIn="@layout/activity_time_tracker">
 
-    <Button
-        android:id="@+id/btn_startStop"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/btn_paybill"
-        android:backgroundTint="#E0F0F1"
-        android:gravity="center"
+    <View
+        android:id="@+id/saveBtn2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#1EFFFFFF"
         android:onClick="toggleTimer"
-        android:text="Start"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="24dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTimeView" />
 
     <TextView
         android:id="@+id/textView"
@@ -34,8 +29,20 @@
         android:text="TextView"
         android:textColor="#F0E5E5"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_startStop"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label_startStopTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:textColor="@color/primaryFont"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/saveBtn2"
+        app:layout_constraintEnd_toEndOf="@+id/saveBtn2"
+        app:layout_constraintStart_toStartOf="@+id/saveBtn2"
+        app:layout_constraintTop_toTopOf="@+id/saveBtn2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

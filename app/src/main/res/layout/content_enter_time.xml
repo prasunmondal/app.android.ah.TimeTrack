@@ -8,74 +8,112 @@
     tools:context=".values.EnterTimeActivity"
     tools:showIn="@layout/activity_enter_time">
 
-    <Button
-        android:id="@+id/enterTime_btn_save"
-        android:layout_width="135dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/btn_paybill"
-        android:backgroundTint="#E0F0F1"
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/view4"
+        android:layout_width="351dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/right_rounded_corner"
+        android:backgroundTint="#CCFF90"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/enterTime_label_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="45dp"
+            android:text="Start Time:"
+            android:textColor="#0D1B01"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TimePicker
+            android:id="@+id/enterData_startTimePicker"
+            android:layout_width="308dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:datePickerMode="calendar"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:textAlignment="viewStart"
+            android:textSize="8sp"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterTime_label_startTime" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/view5"
+        android:layout_width="351dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/left_rounded_corner"
+        android:backgroundTint="#FFD180"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4">
+
+        <TextView
+            android:id="@+id/enterTime_label_stopTime"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="15dp"
+            android:text="Stop Time:"
+            android:textColor="#4D1402"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterData_startTimePicker" />
+
+        <TimePicker
+            android:id="@+id/enterData_stopTimePicker"
+            android:layout_width="408dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:datePickerMode="calendar"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="@+id/enterData_startTimePicker"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterTime_label_stopTime" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/saveBtn6"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#94FFFFFF"
         android:onClick="onClickSave"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="24dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TimePicker
-        android:id="@+id/enterData_startTimePicker"
-        android:layout_width="408dp"
-        android:layout_height="230dp"
-        android:layout_centerHorizontal="true"
-        android:datePickerMode="calendar"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:textAlignment="viewStart"
-        android:textSize="8sp"
-        android:timePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterTime_label_startTime" />
-
-    <TimePicker
-        android:id="@+id/enterData_stopTimePicker"
-        android:layout_width="407dp"
-        android:layout_height="230dp"
-        android:layout_centerHorizontal="true"
-        android:datePickerMode="calendar"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:timePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="@+id/enterData_startTimePicker"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterTime_label_stopTime" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmTimeView" />
 
     <TextView
-        android:id="@+id/enterTime_label_startTime"
+        android:id="@+id/label_save2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Start Time:"
+        android:text="Go!"
+        android:textColor="@color/primaryFont"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/saveBtn6"
+        app:layout_constraintEnd_toEndOf="@+id/saveBtn6"
+        app:layout_constraintStart_toStartOf="@+id/saveBtn6"
+        app:layout_constraintTop_toTopOf="@+id/saveBtn6" />
 
-    <TextView
-        android:id="@+id/enterTime_label_stopTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:text="Stop Time:"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterData_startTimePicker" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,7 +102,7 @@ class TimeTrackerActivity : AppCompatActivity() {
             dateFormat.timeZone = TimeZone.getTimeZone("IST")
             start = sdf.format(Date())
             sessionData.currentCustomer.startTimer()
-            findViewById<Button>(R.id.btn_startStop).text = "Stop"
+            findViewById<TextView>(R.id.label_startStopTimer).text = "Stop"
             onClickReset(view)
             onClickStart(view)
             ToSheets.logs.post(
@@ -114,7 +114,7 @@ class TimeTrackerActivity : AppCompatActivity() {
         } else {
             stop = sdf.format(Date())
             sessionData.currentCustomer.stopTimer()
-            findViewById<Button>(R.id.btn_startStop).text = "Start"
+            findViewById<TextView>(R.id.label_startStopTimer).text = "Start"
             onClickStop(view)
             println("$start $stop")
 

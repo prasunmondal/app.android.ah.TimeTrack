@@ -8,27 +8,53 @@
     tools:context=".ConfirmSave"
     tools:showIn="@layout/activity_confirm_save">
 
-    <TextView
-        android:id="@+id/confirmTimeView"
-        android:layout_width="153dp"
-        android:layout_height="51dp"
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:text="TextView"
-        android:textColor="@color/primaryFont"
+    <View
+        android:id="@+id/saveBtn"
+        android:layout_width="640dp"
+        android:layout_height="640dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#1EFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmTimeView" />
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
+    <View
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#1EFFFFFF"
         android:onClick="onClickSave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmTimeView" />
+
+    <TextView
+        android:id="@+id/confirmTimeView"
+        android:layout_width="153dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="128dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/primaryFont"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="@color/primaryFont"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/saveBtn"
+        app:layout_constraintEnd_toEndOf="@+id/saveBtn"
+        app:layout_constraintStart_toStartOf="@+id/saveBtn"
+        app:layout_constraintTop_toTopOf="@+id/saveBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
