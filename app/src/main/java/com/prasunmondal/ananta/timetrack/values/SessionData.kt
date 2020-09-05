@@ -23,6 +23,7 @@ class Customer {
     var startTime = ""
     var endTime = ""
     var totalTime = ""
+    var inputTypeIsManual = false
 
     companion object {
         var CSV_INDEX_NAME = 1

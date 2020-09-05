@@ -149,6 +149,7 @@ class TimeTrackerActivity : AppCompatActivity() {
     }
 
     fun goToSavePage() {
+        sessionData.currentCustomer.inputTypeIsManual = false
         val i = Intent(this@TimeTrackerActivity, ConfirmSave::class.java)
         startActivity(i)
     }

@@ -43,6 +43,7 @@ class EnterTimeActivity : AppCompatActivity() {
     }
 
     private fun goToSavePage() {
+        session.currentCustomer.inputTypeIsManual = true
         val i = Intent(this@EnterTimeActivity, ConfirmSave::class.java)
         startActivity(i)
     }

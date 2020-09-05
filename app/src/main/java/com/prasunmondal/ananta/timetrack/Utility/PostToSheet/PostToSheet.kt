@@ -1,6 +1,7 @@
 package com.prasunmondal.ananta.timetrack.Utility.PostToSheet
 
 import android.content.Context
+import com.prasunmondal.ananta.timetrack.utils.TimeUtils
 import com.prasunmondal.ananta.timetrack.values.Customer
 import com.prasunmondal.lib.posttogsheets.PostToGSheet
 
@@ -73,7 +74,7 @@ class ToSheets private constructor() {
                     c.address,
                     c.startTime,
                     c.endTime,
-                    c.totalTime,
+                    TimeUtils.msToString(c.getTimeDiff()),
                     c.pricePerUnit.toString(),
                     c.prevBal.toString()
                 ), context
