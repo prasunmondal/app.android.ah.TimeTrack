@@ -53,6 +53,7 @@ class SelectCustomer : AppCompatActivity() {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         dropdown.adapter = dataAdapter
         bottomToolbarConfig("Downloading...",false)
+        findViewById<View>(R.id.showDetailsPanel).visibility = View.INVISIBLE
     }
 
     private fun onCustomerListDownlaodComplete() {
@@ -112,6 +113,7 @@ class SelectCustomer : AppCompatActivity() {
                     addressView.text = LABEL_ADDRESS + c.address
 
                     bottomToolbarConfig("Next", true)
+                    findViewById<View>(R.id.showDetailsPanel).visibility = View.VISIBLE
                 }
             }
         } else {
@@ -119,6 +121,7 @@ class SelectCustomer : AppCompatActivity() {
             nameView.text = ""
             contactView.text = ""
             addressView.text = ""
+            findViewById<View>(R.id.showDetailsPanel).visibility = View.INVISIBLE
         }
     }
 
