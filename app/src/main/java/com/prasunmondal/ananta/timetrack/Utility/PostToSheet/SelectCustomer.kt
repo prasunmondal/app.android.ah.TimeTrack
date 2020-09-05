@@ -22,9 +22,9 @@ class SelectCustomer : AppCompatActivity() {
     private lateinit var breakdownSheet: DownloadableFiles
     private lateinit var customerList: MutableList<Customer>
 
-    private val LABEL_NAME = "Name : "
-    private val LABEL_CONTACT_NO = "Phone No. "
-    private val LABEL_ADDRESS = "Address: "
+    private val LABEL_NAME = ""
+    private val LABEL_CONTACT_NO = "\uD83D\uDCDE  "
+    private val LABEL_ADDRESS = "\uD83D\uDCCC  "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
