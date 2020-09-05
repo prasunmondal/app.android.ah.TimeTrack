@@ -24,10 +24,18 @@ class Customer {
     var endTime = ""
     var totalTime = ""
 
-    constructor(name: String, phoneNumber: String, address: String) {
+    companion object {
+        var CSV_INDEX_NAME = 1
+        var CSV_INDEX_CONTACTNO = 2
+        var CSV_INDEX_ADDRESS = 3
+        var CSV_INDEX_PRICE = 4
+    }
+
+    constructor(name: String, phoneNumber: String, address: String, price: Float) {
         this.name = name
         this.phoneNumber = phoneNumber
         this.address = address
+        this.pricePerUnit = price
     }
 
     fun startTimer() {
