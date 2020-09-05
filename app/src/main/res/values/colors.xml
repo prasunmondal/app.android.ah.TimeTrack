@@ -7,4 +7,7 @@
     <color name="splashScreen_background">#10181F</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="primaryBackground">#0E1218</color>
+    <color name="primaryFont">#FFFFFF</color>
 </resources>
