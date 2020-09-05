@@ -29,8 +29,9 @@ class ConfirmSave : AppCompatActivity() {
     fun onClickSave(view: View) {
         writeData()
         Toast.makeText(this,"Data Saved!", Toast.LENGTH_LONG).show()
-        val i = Intent(this@ConfirmSave, SelectCustomer::class.java)
-        startActivity(i)
+        val intent = Intent(this@ConfirmSave, SelectCustomer::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
         finish()
     }
 
