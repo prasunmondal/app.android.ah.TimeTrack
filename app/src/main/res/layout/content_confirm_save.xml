@@ -23,7 +23,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:background="@drawable/round"
-        android:backgroundTint="#1EFFFFFF"
+        android:backgroundTint="#80011327"
         android:onClick="onClickSave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
