@@ -1,7 +1,5 @@
 package com.prasunmondal.ananta.timetrack
 
-import GetDeviceInfo.Device
-import GetDeviceInfo.DeviceInfo
 import android.content.Context
 import android.content.Intent
 import android.net.wifi.WifiManager
@@ -12,6 +10,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
+import com.prasunmondal.lib.android.deviceinfo.Device
+import com.prasunmondal.lib.android.deviceinfo.DeviceInfo
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 import java.util.*
 import com.prasunmondal.ananta.timetrack.values.SessionData.Singleton.instance as sessionData
@@ -36,14 +36,18 @@ class FullscreenActivity : AppCompatActivity() {
 
         mVisible = true
 
+        initiallize()
         Handler().postDelayed({ // This method will be executed once the timer is over
             val i = Intent(this@FullscreenActivity, SelectCustomer::class.java)
             startActivity(i)
             finish()
         }, 2000)
 
-        populateSystemInfo()
-        ToSheets.logs.post(listOf(sessionData.systemInfo, "Application Started"), this)
+        ToSheets.logs.post(listOf(DeviceInfo.getAllInfo(), "Application Started"), this)
+    }
+
+    private fun initiallize() {
+        DeviceInfo.setContext(this, contentResolver)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -75,51 +79,5 @@ class FullscreenActivity : AppCompatActivity() {
 
     companion object {
         private val UI_ANIMATION_DELAY = 300
-    }
-
-    fun populateSystemInfo() {
-        sessionData.systemInfo = generateDeviceId() + " - "
-        sessionData.systemInfo += DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_UNIQUE_ID
-        ) + " - "
-        sessionData.systemInfo += DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_MAC_ADDRESS
-        )
-        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_IN_INCH
-        )
-        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_HARDWARE_MODEL
-        )
-        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_NUMBER_OF_PROCESSORS
-        )
-        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_SYSTEM_NAME
-        )
-        sessionData.systemInfo += ", " + DeviceInfo.getDeviceInfo(
-            applicationContext,
-            Device.DEVICE_VERSION
-        )
-    }
-
-    fun generateDeviceId(): String {
-        val macAddr: String
-        val wifiMan =
-            this.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        val wifiInf = wifiMan.connectionInfo
-        macAddr = wifiInf.macAddress
-        val androidId: String = "" + Settings.Secure.getString(
-            contentResolver,
-            Settings.Secure.ANDROID_ID
-        )
-        val deviceUuid = UUID(androidId.hashCode().toLong(), macAddr.hashCode().toLong())
-        return deviceUuid.toString()
     }
 }

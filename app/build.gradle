@@ -9,7 +9,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.prasunmondal.ananta.timetrack"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -40,6 +40,7 @@ dependencies {
 
     implementation 'com.github.prasunmondal:lib.postToGSheet:1.0.1'
     implementation 'com.github.prasunmondal:lib.android.downloadableFile:1.0.2'
+    implementation 'com.github.prasunmondal:lib.android.deviceInfo:1.0.1'
 
     implementation 'com.opencsv:opencsv:4.6'
 }

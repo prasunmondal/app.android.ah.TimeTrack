@@ -3,7 +3,11 @@ package com.prasunmondal.ananta.timetrack.Utility.PostToSheet
 import android.content.Context
 import com.prasunmondal.ananta.timetrack.utils.TimeUtils
 import com.prasunmondal.ananta.timetrack.values.Customer
+import com.prasunmondal.lib.android.deviceinfo.Device
+import com.prasunmondal.lib.android.deviceinfo.DeviceInfo
 import com.prasunmondal.lib.posttogsheets.PostToGSheet
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ToSheets private constructor() {
 
@@ -66,17 +70,26 @@ class ToSheets private constructor() {
                 postTo = addTransaction_Entered
 
             }
+
+            val d = Calendar.getInstance().time
+            println("Current time => $d")
+
+            val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formattedDate: String = df.format(d)
             postTo.post(
                 listOf(
-                    type,
                     c.name,
                     c.phoneNumber,
                     c.address,
                     c.startTime,
                     c.endTime,
+                    formattedDate,
                     TimeUtils.msToString(c.getTimeDiff()),
                     c.pricePerUnit.toString(),
-                    c.prevBal.toString()
+                    c.getCalculatedPrice().toString(),
+                    "DEBIT",
+                    type,
+                    DeviceInfo.get(Device.UNIQUE_ID)
                 ), context
             )
         }
