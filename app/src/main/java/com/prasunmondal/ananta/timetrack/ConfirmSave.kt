@@ -21,11 +21,22 @@ class ConfirmSave : AppCompatActivity() {
         setContentView(R.layout.activity_confirm_save)
         setSupportActionBar(toolbar)
 
-        ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Confirm Save::" +
-                " ::Start time:" + session.currentCustomer.startTime +
-                " ::Stop time:" + session.currentCustomer.endTime +
-                " ::Total time:" + session.currentCustomer.totalTime
-        ), this)
+        if(session.currentCustomer.startTime == "") {
+            ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Confirm Save::" +
+                    " ::Start time:" + session.currentCustomer.latestStartTime +
+                    " ::Stop time:" + session.currentCustomer.latestEndTime +
+                    " ::Total time:" + session.currentCustomer.getTimeDiff()
+            ), this)
+        } else {
+            ToSheets.logs.post(
+                listOf(
+                    LogActions.CLICKED.name, "Confirm Save::" +
+                            " ::Start time:" + session.currentCustomer.startTime +
+                            " ::Stop time:" + session.currentCustomer.endTime +
+                            " ::Total time:" + session.currentCustomer.totalTime
+                ), this
+            )
+        }
         val confirmTimeView = findViewById<TextView>(R.id.confirmTimeView)
         val showString = TimeUtils.msToString(session.currentCustomer.getTimeDiff())
         confirmTimeView.text = showString
@@ -34,11 +45,22 @@ class ConfirmSave : AppCompatActivity() {
 
     fun onClickSave(view: View) {
         writeData()
-        ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Saved Data::" +
-                " ::Start time:" + session.currentCustomer.startTime +
-                " ::Stop time:" + session.currentCustomer.endTime +
-                " ::Total time:" + session.currentCustomer.totalTime
-        ), this)
+        if(session.currentCustomer.startTime == "") {
+            ToSheets.logs.post(listOf(LogActions.CLICKED.name, "SAVE::" +
+                    " :Start time:" + session.currentCustomer.latestStartTime +
+                    " :Stop time:" + session.currentCustomer.latestEndTime +
+                    " :Total time:" + session.currentCustomer.getTimeDiff()
+            ), this)
+        } else {
+            ToSheets.logs.post(
+                listOf(
+                    LogActions.CLICKED.name, "SAVE::" +
+                            " :Start time:" + session.currentCustomer.startTime +
+                            " :Stop time:" + session.currentCustomer.endTime +
+                            " :Total time:" + session.currentCustomer.totalTime
+                ), this
+            )
+        }
         Toast.makeText(this,"Data Saved!", Toast.LENGTH_LONG).show()
         val intent = Intent(this@ConfirmSave, SelectCustomer::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
