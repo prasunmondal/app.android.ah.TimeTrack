@@ -45,15 +45,15 @@ class FullscreenActivity : AppCompatActivity() {
     private fun initiallize() {
         DeviceInfo.setContext(this, contentResolver)
 
-        var currentLogsSheet = ""
-        var currentErrorsSheet = ""
-        var currentAddTransactionSheet = ""
+        val currentLogsSheet: String
+        val currentErrorsSheet: String
+        val currentAddTransactionSheet: String
 
-        var currentLogsTab = ""
-        var currentErrorsTab = ""
-        var currentAddTransactionTab = ""
+        val currentLogsTab: String
+        val currentErrorsTab: String
+        val currentAddTransactionTab: String
 
-        var currentCopyTemplate = ""
+        val currentCopyTemplate = ""
 
         if(CommonUtils().isDevEnv()) {
             currentLogsSheet = ToSheets.devLogs_sheet
