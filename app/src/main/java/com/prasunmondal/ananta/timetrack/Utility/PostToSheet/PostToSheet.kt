@@ -14,28 +14,27 @@ class ToSheets private constructor() {
 
     companion object {
 
-        val googleScript_scriptURL =
+        const val googleScript_scriptURL =
             "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec"
 
-        val devDB = "https://docs.google.com/spreadsheets/d/1CvGQnFZL9YpUm1Ws_PtKFW_K8NVmm3OpEUZTwmfT4DA/edit#gid=0"
-        val userDB = "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0"
+        private const val devDB: String = "https://docs.google.com/spreadsheets/d/1CvGQnFZL9YpUm1Ws_PtKFW_K8NVmm3OpEUZTwmfT4DA/edit#gid=0"
+        private const val userDB: String = "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0"
 
         // user profile
-        val userLogs_sheet = devDB
-        val userLogs_tab = "userLogs"
-        val userErrors_sheet = devDB
-        val userErrors_tab = "userErrors"
-        val userAddTransactionSheet = userDB
-        val userAddTransactionTab = "Transactions"
-
+        const val userLogs_sheet = devDB
+        const val userLogs_tab = "userLogs"
+        const val userErrors_sheet = devDB
+        const val userErrors_tab = "userErrors"
+        const val userAddTransactionSheet = userDB
+        const val userAddTransactionTab = "Transactions"
 
         // dev profile
-        val devLogs_sheet = devDB
-        val devLogs_tab = "devLogs"
-        val devErrors_sheet = devDB
-        val devErrors_tab = "devErrors"
-        val devAddTransactionSheet = devDB
-        val devAddTransactionTab = "Transactions"
+        const val devLogs_sheet = devDB
+        const val devLogs_tab = "devLogs"
+        const val devErrors_sheet = devDB
+        const val devErrors_tab = "devErrors"
+        const val devAddTransactionSheet = devDB
+        const val devAddTransactionTab = "Transactions"
 
         lateinit var logs: PostToGSheet
         lateinit var errors: PostToGSheet
