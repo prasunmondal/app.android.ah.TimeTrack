@@ -1,20 +1,16 @@
 package com.prasunmondal.ananta.timetrack
 
-import android.content.Context
 import android.content.Intent
-import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.os.Handler
-import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
-import com.prasunmondal.lib.android.deviceinfo.Device
+import com.prasunmondal.ananta.timetrack.utils.CommonUtils
 import com.prasunmondal.lib.android.deviceinfo.DeviceInfo
+import com.prasunmondal.lib.posttogsheets.PostToGSheet
 import kotlinx.android.synthetic.main.activity_fullscreen.*
-import java.util.*
-import com.prasunmondal.ananta.timetrack.values.SessionData.Singleton.instance as sessionData
 
 class FullscreenActivity : AppCompatActivity() {
     private val mHideHandler = Handler()
@@ -48,6 +44,61 @@ class FullscreenActivity : AppCompatActivity() {
 
     private fun initiallize() {
         DeviceInfo.setContext(this, contentResolver)
+
+        var currentLogsSheet = ""
+        var currentErrorsSheet = ""
+        var currentAddTransactionSheet = ""
+
+        var currentLogsTab = ""
+        var currentErrorsTab = ""
+        var currentAddTransactionTab = ""
+
+        var currentCopyTemplate = ""
+
+        if(CommonUtils().isDevEnv()) {
+            currentLogsSheet = ToSheets.devLogs_sheet
+            currentErrorsSheet = ToSheets.devErrors_sheet
+            currentAddTransactionSheet = ToSheets.devAddTransactionSheet
+
+            currentLogsTab = ToSheets.devLogs_tab
+            currentErrorsTab = ToSheets.devErrors_tab
+            currentAddTransactionTab = ToSheets.devAddTransactionTab
+        } else {
+            currentLogsSheet = ToSheets.userLogs_sheet
+            currentErrorsSheet = ToSheets.userErrors_sheet
+            currentAddTransactionSheet = ToSheets.userAddTransactionSheet
+
+            currentLogsTab = ToSheets.userLogs_tab
+            currentErrorsTab = ToSheets.userErrors_tab
+            currentAddTransactionTab = ToSheets.userAddTransactionTab
+        }
+
+        ToSheets.logs = PostToGSheet(
+            ToSheets.googleScript_scriptURL,
+            currentLogsSheet,
+            currentLogsTab,
+            currentCopyTemplate,
+            "template",
+            true, null
+        )
+
+        ToSheets.errors = PostToGSheet(
+            ToSheets.googleScript_scriptURL,
+            currentErrorsSheet,
+            currentErrorsTab,
+            currentCopyTemplate,
+            "template",
+            true, null
+        )
+
+        ToSheets.addTransaction = PostToGSheet(
+            ToSheets.googleScript_scriptURL,
+            currentAddTransactionSheet,
+            currentAddTransactionTab,
+            currentCopyTemplate,
+            "template",
+            true, null
+        )
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

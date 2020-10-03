@@ -16,58 +16,38 @@ class ToSheets private constructor() {
 
         val googleScript_scriptURL =
             "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec"
-        val sheet_output_URL =
-            "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0" // project_Ananta
-        val sheet_devlogs_URL =
-            "https://docs.google.com/spreadsheets/d/1nMItEbUTq8do0XZDOWr5gsTugwSxqoWPfCw6yqbroNw/edit#gid=0" // Project_Ananta_devlogs
-        val sheet_devlogs_tabName = "run_logs"
-        val logs: PostToGSheet =
-            PostToGSheet(
-                googleScript_scriptURL,
-                sheet_output_URL,
-                "logs",
-                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
-                "template",
-                true, null
-            )
 
-        val error: PostToGSheet =
-            PostToGSheet(
-                googleScript_scriptURL,
-                sheet_output_URL,
-                "errors",
-                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
-                "template",
-                true, null
-            )
+        val devDB = "https://docs.google.com/spreadsheets/d/1CvGQnFZL9YpUm1Ws_PtKFW_K8NVmm3OpEUZTwmfT4DA/edit#gid=0"
+        val userDB = "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0"
 
-        val addTransaction_Calculated: PostToGSheet =
-            PostToGSheet(
-                googleScript_scriptURL,
-                sheet_output_URL,
-                "Data",
-                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
-                "template",
-                true, null
-            )
+        // user profile
+        val userLogs_sheet = devDB
+        val userLogs_tab = "userLogs"
+        val userErrors_sheet = devDB
+        val userErrors_tab = "userErrors"
+        val userAddTransactionSheet = userDB
+        val userAddTransactionTab = "Transactions"
 
-        val addTransaction_Entered: PostToGSheet =
-            PostToGSheet(
-                googleScript_scriptURL,
-                sheet_output_URL,
-                "Data",
-                "https://docs.google.com/spreadsheets/d/1qacLjDP01fA5xxo1RNI9oGDyP6iknMQyIOPx24brJlA/edit#gid=0",
-                "template",
-                true, null
-            )
+
+        // dev profile
+        val devLogs_sheet = devDB
+        val devLogs_tab = "devLogs"
+        val devErrors_sheet = devDB
+        val devErrors_tab = "devErrors"
+        val devAddTransactionSheet = devDB
+        val devAddTransactionTab = "Transactions"
+
+        lateinit var logs: PostToGSheet
+        lateinit var errors: PostToGSheet
+        lateinit var addTransaction: PostToGSheet
 
         fun addTransaction(c: Customer, type: String, context: Context) {
-            var postTo = addTransaction_Calculated
+            var postTo = this.addTransaction
             if (type == "Entered") {
-                postTo = addTransaction_Calculated
+                postTo = this.addTransaction
             }
             if (type == "Calculated") {
-                postTo = addTransaction_Entered
+                postTo = this.addTransaction
 
             }
 
