@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
+import com.prasunmondal.ananta.timetrack.utils.LogActions
+import com.prasunmondal.ananta.timetrack.values.SessionData
 import kotlinx.android.synthetic.main.activity_time_tracker.*
 import java.lang.String
 import java.text.SimpleDateFormat
@@ -104,12 +106,8 @@ class TimeTrackerActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.label_startStopTimer).text = "Stop"
             onClickReset(view)
             onClickStart(view)
-            ToSheets.logs.post(
-                listOf(
-                    sessionData.systemInfo,
-                    "Started - ms: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start
-                ), this
-            )
+            ToSheets.logs.post(listOf(
+                LogActions.CLICKED.name, "START TIMER: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + start), this)
         } else {
             stop = sdf.format(Date())
             sessionData.currentCustomer.stopTimer()
@@ -142,6 +140,8 @@ class TimeTrackerActivity : AppCompatActivity() {
             sessionData.currentCustomer.totalTime = time
 
 //                    writeData()
+            ToSheets.logs.post(listOf(
+                LogActions.CLICKED.name, "STOP TIMER: " + sessionData.currentCustomer.latestStartTime.toString() + " TimeStamp: " + stop), this)
             goToSavePage()
         }
 

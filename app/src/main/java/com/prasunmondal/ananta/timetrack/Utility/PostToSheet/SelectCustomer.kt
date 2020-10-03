@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.ChooseInputMethod
 import com.prasunmondal.ananta.timetrack.R
 import com.prasunmondal.ananta.timetrack.files.ReadCustomerDetails
+import com.prasunmondal.ananta.timetrack.utils.LogActions
 import com.prasunmondal.ananta.timetrack.values.Customer
 import com.prasunmondal.ananta.timetrack.values.SessionData
 import com.prasunmondal.lib.android.downloadfile.DownloadableFiles
@@ -35,6 +36,7 @@ class SelectCustomer : AppCompatActivity() {
         showDownloading()
         customerList = mutableListOf()
 
+        ToSheets.logs.post(listOf(LogActions.DOWNLOAD_START.name, "Metadata"), this)
         breakdownSheet = DownloadableFiles(
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSu2ZUWS9RHAdkeOH-vzno6mwTBYhN6gL1lXeREG3OQGrQXpzJ9lcpdYzKWB7f7AgawNKsPiusxGDi/pub?gid=1400723064&single=true&output=csv",
             "",
@@ -57,6 +59,7 @@ class SelectCustomer : AppCompatActivity() {
     }
 
     private fun onCustomerListDownlaodComplete() {
+        ToSheets.logs.post(listOf(LogActions.DOWNLOAD_COMPLETE.name, "Metadata"), this)
         bottomToolbarConfig("Select Name", true)
         populateAllCustomerDetails()
         loadDataToSpinner()
@@ -92,6 +95,7 @@ class SelectCustomer : AppCompatActivity() {
     fun onClickInfoSaveButton() {
         println("clicked - goToCountDown")
         if(getSelectedCustomer()==null) {
+            ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Select Customer - Invalid Selection"), this)
             Toast.makeText(this, "Select a valid name", Toast.LENGTH_SHORT).show()
         } else {
             saveFormData()
@@ -126,6 +130,7 @@ class SelectCustomer : AppCompatActivity() {
     }
 
     private fun saveFormData() {
+        ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Select Customer - " + getSelectedCustomer()!!.name), this)
         SessionData.Singleton.instance.currentCustomer = getSelectedCustomer()!!
     }
 

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
+import com.prasunmondal.ananta.timetrack.utils.LogActions
 import com.prasunmondal.ananta.timetrack.values.EnterTimeActivity
 
 import kotlinx.android.synthetic.main.activity_choose_input_method.*
@@ -17,10 +19,12 @@ class ChooseInputMethod : AppCompatActivity() {
     }
 
     fun onClickTimeTrack(view: View) {
+        ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Select Input Type - Stopwatch"), this)
         goToTimeTrackActivity()
     }
 
     fun onClickEnterTime(view: View) {
+        ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Select Input Type - EnterTime"), this)
         goToEnterTimeActivity()
     }
 
