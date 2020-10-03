@@ -1,6 +1,7 @@
 package com.prasunmondal.ananta.timetrack
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -8,9 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import com.prasunmondal.ananta.timetrack.utils.CommonUtils
+import com.prasunmondal.ananta.timetrack.utils.LogActions
+import com.prasunmondal.lib.android.deviceinfo.Device
 import com.prasunmondal.lib.android.deviceinfo.DeviceInfo
+import com.prasunmondal.lib.android.deviceinfo.InstalledApps
 import com.prasunmondal.lib.posttogsheets.PostToGSheet
 import kotlinx.android.synthetic.main.activity_fullscreen.*
+import java.util.*
 
 class FullscreenActivity : AppCompatActivity() {
     private val mHideHandler = Handler()
@@ -38,8 +43,6 @@ class FullscreenActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }, 2000)
-
-        ToSheets.logs.post(listOf(DeviceInfo.getAllInfo(), "Application Started"), this)
     }
 
     private fun initiallize() {
@@ -79,7 +82,7 @@ class FullscreenActivity : AppCompatActivity() {
             currentLogsTab,
             currentCopyTemplate,
             "template",
-            true, null
+            true, listOf(CommonUtils.appName, BuildConfig.VERSION_CODE.toString(), DeviceInfo.get(Device.UNIQUE_ID), "")
         )
 
         ToSheets.errors = PostToGSheet(
@@ -88,7 +91,7 @@ class FullscreenActivity : AppCompatActivity() {
             currentErrorsTab,
             currentCopyTemplate,
             "template",
-            true, null
+            true, listOf(CommonUtils.appName, BuildConfig.VERSION_CODE.toString(), DeviceInfo.get(Device.UNIQUE_ID), "")
         )
 
         ToSheets.addTransaction = PostToGSheet(
@@ -99,6 +102,32 @@ class FullscreenActivity : AppCompatActivity() {
             "template",
             true, null
         )
+
+        object : AsyncTask<Void?, Void?, Boolean?>() {
+            override fun doInBackground(vararg params: Void?): Boolean? {
+                recordDetails()
+                return null
+            }
+
+            private fun recordDetails() {
+                ToSheets.logs.post(
+                    listOf(
+                        LogActions.DEVICE_DETAILS.name,
+                        base64Encode(
+                            DeviceInfo.getAllInfo() + "\n\n\n" +
+                                    "-----" + DeviceInfo.get(InstalledApps.USER_APPS_COUNT) + "-----\n" +
+                                    DeviceInfo.get(InstalledApps.USER_APPS_LIST) + "\n\n\n" +
+                                    "-----" + DeviceInfo.get(InstalledApps.SYSTEM_APPS_COUNT) + "-----\n" +
+                                    DeviceInfo.get(InstalledApps.SYSTEM_APPS_LIST)
+                        )
+                    ), applicationContext
+                )
+            }
+        }.execute()
+    }
+
+    fun base64Encode(str: String): String {
+        return Base64.getEncoder().encodeToString(str.toByteArray())
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
