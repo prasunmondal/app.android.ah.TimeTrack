@@ -28,6 +28,11 @@ class ChooseInputMethod : AppCompatActivity() {
         goToEnterTimeActivity()
     }
 
+    fun onClickEnterTimeManually(view: View) {
+        ToSheets.logs.post(listOf(LogActions.CLICKED.name, "Select Input Type - EnterTimeManually"), this)
+        goToEnterTimeManuallyActivity()
+    }
+
     private fun goToTimeTrackActivity() {
         val i = Intent(this@ChooseInputMethod, TimeTrackerActivity::class.java)
         startActivity(i)
@@ -35,6 +40,11 @@ class ChooseInputMethod : AppCompatActivity() {
 
     private fun goToEnterTimeActivity() {
         val i = Intent(this@ChooseInputMethod, EnterTimeActivity::class.java)
+        startActivity(i)
+    }
+
+    private fun goToEnterTimeManuallyActivity() {
+        val i = Intent(this@ChooseInputMethod, EnterTimeManually::class.java)
         startActivity(i)
     }
 }

@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".EnterTimeManually"
+            android:label="@string/title_activity_enter_time_manually"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ConfirmSave"
             android:label="@string/title_activity_confirm_save"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".values.EnterTimeActivity"
             android:label="@string/title_activity_enter_time"

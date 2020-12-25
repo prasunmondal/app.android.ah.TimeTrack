@@ -26,4 +26,5 @@
         <item>Subhodeep Ghosh</item>
         <item>Sudipta Roy</item>
     </string-array>
+    <string name="title_activity_enter_time_manually">EnterTimeManually</string>
 </resources>
