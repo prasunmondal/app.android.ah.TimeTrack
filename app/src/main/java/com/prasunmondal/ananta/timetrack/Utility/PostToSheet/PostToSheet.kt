@@ -1,6 +1,7 @@
 package com.prasunmondal.ananta.timetrack.Utility.PostToSheet
 
 import android.content.Context
+import com.prasunmondal.ananta.timetrack.Models.InputType
 import com.prasunmondal.ananta.timetrack.utils.TimeUtils
 import com.prasunmondal.ananta.timetrack.values.Customer
 import com.prasunmondal.lib.android.deviceinfo.Device
@@ -16,7 +17,6 @@ class ToSheets private constructor() {
 
         const val googleScript_scriptURL =
             "https://script.google.com/macros/s/AKfycbyoYcCSDEbXuDuGf0AhQjEi61ECAkl8JUv4ffNofz1yBIKfcT4/exec"
-
         private const val devDB: String = "https://docs.google.com/spreadsheets/d/1CvGQnFZL9YpUm1Ws_PtKFW_K8NVmm3OpEUZTwmfT4DA/edit#gid=0"
         private const val userDB: String = "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0"
 
@@ -40,15 +40,8 @@ class ToSheets private constructor() {
         lateinit var errors: PostToGSheet
         lateinit var addTransaction: PostToGSheet
 
-        fun addTransaction(c: Customer, type: String, context: Context) {
+        fun addTransaction(c: Customer, type: InputType, context: Context) {
             var postTo = this.addTransaction
-            if (type == "Entered") {
-                postTo = this.addTransaction
-            }
-            if (type == "Calculated") {
-                postTo = this.addTransaction
-
-            }
 
             val d = Calendar.getInstance().time
             println("Current time => $d")
@@ -67,7 +60,7 @@ class ToSheets private constructor() {
                     c.pricePerUnit.toString(),
                     c.getCalculatedPrice().toString(),
                     "DEBIT",
-                    type,
+                    type.toString(),
                     DeviceInfo.get(Device.UNIQUE_ID)
                 ), context
             )

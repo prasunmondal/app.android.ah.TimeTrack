@@ -7,6 +7,7 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.ananta.timetrack.ConfirmSave
+import com.prasunmondal.ananta.timetrack.Models.InputType
 import com.prasunmondal.ananta.timetrack.R
 import com.prasunmondal.ananta.timetrack.utils.TimeUtils
 import com.prasunmondal.ananta.timetrack.values.SessionData.Singleton.instance as session
@@ -43,7 +44,7 @@ class EnterTimeActivity : AppCompatActivity() {
     }
 
     private fun goToSavePage() {
-        session.currentCustomer.inputTypeIsManual = true
+        session.currentCustomer.inputTypeIsManual = InputType.MANUAL
         val i = Intent(this@EnterTimeActivity, ConfirmSave::class.java)
         startActivity(i)
     }

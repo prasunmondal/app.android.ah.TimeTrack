@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Models.InputType
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import com.prasunmondal.ananta.timetrack.utils.LogActions
 import com.prasunmondal.ananta.timetrack.values.SessionData
@@ -148,7 +149,7 @@ class TimeTrackerActivity : AppCompatActivity() {
     }
 
     fun goToSavePage() {
-        sessionData.currentCustomer.inputTypeIsManual = false
+        sessionData.currentCustomer.inputTypeIsManual = InputType.CALCULATED
         val i = Intent(this@TimeTrackerActivity, ConfirmSave::class.java)
         startActivity(i)
     }

@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_enter_time_manually">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/enter_time_manually_hour"
         android:layout_width="101dp"
         android:layout_height="62dp"
         android:layout_marginStart="100dp"
@@ -20,15 +20,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/enter_time_manually_min"
         android:layout_width="101dp"
         android:layout_height="62dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/editText3"
+        app:layout_constraintBottom_toBottomOf="@+id/enter_time_manually_hour"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toTopOf="@+id/editText3"
+        app:layout_constraintStart_toEndOf="@+id/enter_time_manually_hour"
+        app:layout_constraintTop_toTopOf="@+id/enter_time_manually_hour"
         app:layout_constraintVertical_bias="0.484" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Add"
+        android:onClick="onClickSave"
+        app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_min"
+        app:layout_constraintStart_toStartOf="@+id/enter_time_manually_hour"
+        app:layout_constraintTop_toBottomOf="@+id/enter_time_manually_min" />
 </androidx.constraintlayout.widget.ConstraintLayout>

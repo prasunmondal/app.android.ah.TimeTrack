@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.ananta.timetrack.Models.InputType
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.SelectCustomer
 import com.prasunmondal.ananta.timetrack.Utility.PostToSheet.ToSheets
 import com.prasunmondal.ananta.timetrack.utils.LogActions
@@ -69,9 +70,6 @@ class ConfirmSave : AppCompatActivity() {
     }
 
     private fun writeData() {
-        if(session.currentCustomer.inputTypeIsManual)
-            ToSheets.addTransaction(session.currentCustomer, "MANUAL", applicationContext)
-        else
-            ToSheets.addTransaction(session.currentCustomer, "CALCULATED", applicationContext)
+        ToSheets.addTransaction(session.currentCustomer, session.currentCustomer.inputTypeIsManual, applicationContext)
     }
 }

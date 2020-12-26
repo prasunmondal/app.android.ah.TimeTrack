@@ -1,5 +1,6 @@
 package com.prasunmondal.ananta.timetrack.values
 
+import com.prasunmondal.ananta.timetrack.Models.InputType
 import com.prasunmondal.ananta.timetrack.utils.TimeUtils
 
 class SessionData {
@@ -23,7 +24,7 @@ class Customer {
     var startTime = ""
     var endTime = ""
     var totalTime = ""
-    var inputTypeIsManual = false
+    var inputTypeIsManual = InputType.CALCULATED
 
     companion object {
         var CSV_INDEX_NAME = 1
