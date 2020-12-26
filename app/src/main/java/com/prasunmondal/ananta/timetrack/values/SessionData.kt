@@ -53,7 +53,7 @@ class Customer {
     }
 
     fun getCalculatedPrice(): Float {
-        return (this.latestEndTime - this.latestStartTime) * pricePerUnit
+        return ((this.latestEndTime - this.latestStartTime) * pricePerUnit)/10000
     }
 
     fun getTimeDiff(): Long {

@@ -42,4 +42,27 @@
         app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_min"
         app:layout_constraintStart_toStartOf="@+id/enter_time_manually_hour"
         app:layout_constraintTop_toBottomOf="@+id/enter_time_manually_min" />
+
+    <TextView
+        android:id="@+id/enter_time_manually_label_hours"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Hours"
+        app:layout_constraintBottom_toTopOf="@+id/enter_time_manually_hour"
+        app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_hour"
+        app:layout_constraintStart_toStartOf="@+id/enter_time_manually_hour" />
+
+    <TextView
+        android:id="@+id/enter_time_manually_label_minutes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Minutes"
+        app:layout_constraintBottom_toTopOf="@+id/enter_time_manually_min"
+        app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_min"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/enter_time_manually_hour" />
 </androidx.constraintlayout.widget.ConstraintLayout>
