@@ -15,6 +15,7 @@
         android:layout_marginStart="100dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,6 +27,7 @@
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/enter_time_manually_hour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/enter_time_manually_hour"
@@ -34,11 +36,15 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:layout_marginTop="64dp"
-        android:text="Add"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#F2FFFFFF"
         android:onClick="onClickSave"
+        android:text="Add"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_min"
         app:layout_constraintStart_toStartOf="@+id/enter_time_manually_hour"
         app:layout_constraintTop_toBottomOf="@+id/enter_time_manually_min" />
@@ -50,6 +56,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Hours"
+        android:textColor="#959191"
         app:layout_constraintBottom_toTopOf="@+id/enter_time_manually_hour"
         app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_hour"
         app:layout_constraintStart_toStartOf="@+id/enter_time_manually_hour" />
@@ -61,8 +68,20 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Minutes"
+        android:textColor="#959191"
         app:layout_constraintBottom_toTopOf="@+id/enter_time_manually_min"
         app:layout_constraintEnd_toEndOf="@+id/enter_time_manually_min"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/enter_time_manually_hour" />
+
+    <View
+        android:id="@+id/saveBtn12"
+        android:layout_width="650dp"
+        android:layout_height="650dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#1EFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
